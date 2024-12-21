@@ -3,6 +3,9 @@
 API Reference:
 https://fsa-book-buddy-b6e748d1380d.herokuapp.com/docs/
 
+API Base URL:
+https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/
+
 
 # Block 30 - Book Buddy
 
