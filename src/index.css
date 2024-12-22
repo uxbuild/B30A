@@ -10,4 +10,9 @@ body {
   margin-right: 10px;
 }
 
+.error-message {
+  display: inline-block;
+  color: red;
+  background-color: yellow
+}
 /* Add your own custom styles here */

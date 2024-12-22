@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 //components
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
 import Account from "./components/Account";
 import Navigations from "./components/Navigations";
 import Books from "./components/Books";
@@ -28,7 +28,6 @@ function App() {
           <Route path="*" element={<Lost />} />
         </Routes>
           </div>
-          {/* <Route path="/" element={<Navigations />} /> */}
       </Router>
     </>
   );
