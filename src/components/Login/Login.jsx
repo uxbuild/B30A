@@ -3,29 +3,44 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "./LoginSlice";
+import AlertMessage from "../AlertMessage/AlertMessage";
 
 export default function Login() {
   // state vars:
+  const navigate = useNavigate();
   const [loginUser] = useLoginMutation();
-  const [error, setError] = useState(null);
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState(null);
+  // const [form, setForm] = useState({ email: "", password: "" });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  // const [firstname, setFirstname] = useState("")
+  // const [lastname, setLastname] = useState("")
+  // const [token, setToken] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
-    console.log("submit form", form);
 
     try {
       // const response = await registerUser(form).unwrap();
-      const email = form.email;
-      const password = form.password;
+      //const email = email;
+      //const password = form.password;
       const response = await loginUser({ email, password });
+      if(response.error){
+        setMessage(response.error.data.message);
+      }else{
+        // setToken(localStorage.getItem("token"));
+        setMessage(response.data.message);
+        console.log('token: ', response.data.token);
+        localStorage.setItem("token", response.data.token);
+        navigate("/account");
+      }
+      //console.log("login user response", response);
+      //response.error && setError(response.error.data.message);
+      //response.error && console.log("error message: ", error);
 
-      console.log("register user response", response);
-      response.error && setError(response.error.data.message);
-      response.error && console.log("error message: ", error);
+      
     } catch (error) {
       // console.log('some error', error);
       console.error(error);
@@ -34,8 +49,9 @@ export default function Login() {
 
   return (
     <div>
-      <div>Login</div>
+      <h2>Login</h2>
       <form onSubmit={submit}>
+        
         <div className="form-group">
           <label>Username</label>
           <input
@@ -62,6 +78,7 @@ export default function Login() {
           Submit
         </button>
       </form>
+      {message && <AlertMessage type="error" message={message} />}
     </div>
   );
 }

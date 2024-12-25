@@ -4,10 +4,12 @@ import { api } from "../../api/api";
 const registerApi = api.injectEndpoints({
     endpoints: (builder) => ({
       register: builder.mutation({
-        query: ({ email, password }) => ({
+        query: ({ firstname, lastname, email, password }) => ({
           url: "/users/register",
           method: "POST",
           body: {
+            firstname,
+            lastname,
             email,
             password,
           },
@@ -18,6 +20,7 @@ const registerApi = api.injectEndpoints({
   });
   
   const storeToken = (state, { payload }) => {
+    console.log('register slice token saved: ', payload.token);
     localStorage.setItem("token", payload.token);
   };
   
