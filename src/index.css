@@ -10,4 +10,36 @@ body {
   margin-right: 10px;
 }
 
+.error-message {
+  display: inline-block;
+  color: red;
+  background-color: yellow
+}
+
+.flex-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-item {
+  display: inline-block;
+  padding: 1em;
+}
 /* Add your own custom styles here */
+.debug-message {
+  background-color: yellow;
+  display: inline-block;
+  padding:.5em;
+}
+
+.debug-container {
+  background-color: lightsalmon;
+  padding: 1em;
+  color:black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.page-container {
+  padding: 1em;
+}
