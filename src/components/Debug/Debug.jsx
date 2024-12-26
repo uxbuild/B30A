@@ -9,19 +9,21 @@ export default function Debug() {
   //   const isSignedIn = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
   const [watchLogin, setWatchLogin] = useState(false);
-//   setWatchLogin(useSelector((state)=>state.login.value))
+  //   setWatchLogin(useSelector((state)=>state.login.value))
+  const loginstate = useSelector((state) => state.login.value);
+
   function handleClick(e) {
     e.preventDefault();
     console.log("debug click: ", watchLogin);
 
     // dispatch(login());
     if (watchLogin) {
-      console.log("handle click, signed IN");
+      console.log("handle click, signing out..");
       dispatch(logout());
       setWatchLogin(!watchLogin);
       //   const isSignedIn = useSelector((state) => state.login.value);
     } else {
-      console.log("handle click, signed OUT");
+      console.log("handle click, signing in..");
       dispatch(login());
       setWatchLogin(!watchLogin);
     }
@@ -30,6 +32,7 @@ export default function Debug() {
 
   useEffect(() => {
     console.log("useEffect..");
+    console.log("store login: ", loginstate);
   }, [watchLogin]);
 
   // const token = localStorage.getItem("token");
@@ -47,8 +50,8 @@ export default function Debug() {
       <p className="debug-message">
         <button type="button" onClick={handleClick}>
           Toggle
-        </button>{" "}
-        Login: {watchLogin}
+        </button>
+        <span> Login: {watchLogin.toString()} </span>
       </p>
     </>
   );

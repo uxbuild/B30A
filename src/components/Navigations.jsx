@@ -6,17 +6,16 @@ import { useState, useEffect } from "react";
 import Debug from "./Debug/Debug";
 import { useSelector, useDispatch } from "react-redux";
 
-
 export default function Navigations({ watch, setWatch }) {
   // managing token state (??)
   //   const [token, setToken] = useState(null);
 
   // get login state from store.
 
-
   const token = localStorage.getItem("token");
+  const login = useSelector((state) => state.login.value);
 
-  if (token) {
+  if (login) {
     console.log("Navigation - there is a token");
 
     // return ("You are logged in.")
