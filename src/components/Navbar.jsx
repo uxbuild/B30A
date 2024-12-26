@@ -6,16 +6,24 @@ import { useState, useEffect } from "react";
 import Debug from "./Debug/Debug";
 import { useSelector, useDispatch } from "react-redux";
 
-export default function Navigations({ watch, setWatch }) {
+export default function Navbar() {
   // managing token state (??)
   //   const [token, setToken] = useState(null);
 
   // get login state from store.
 
-  const token = localStorage.getItem("token");
-  const login = useSelector((state) => state.login.value);
+//   const token = localStorage.getItem("token");
+const [isLogin, setIsLogin] = useState(false);
+const login = useSelector((state) => state.login.value);
 
-  if (login) {
+if(login!==isLogin ){
+    setIsLogin(login);
+    // console.log('login token: ', localStorage.getItem("token"));    
+}
+useEffect(()=>{
+},[isLogin])
+
+  if (isLogin) {
     console.log("Navigation - there is a token");
 
     // return ("You are logged in.")
@@ -26,10 +34,6 @@ export default function Navigations({ watch, setWatch }) {
             <Link className="nav-item" to="/books">
               Books
             </Link>
-          </div>
-          <div id="nav-group-3">
-            {/* <Debug watch={watch} setWatch={setWatch} /> */}
-            <Debug />
           </div>
           <div id="nav-group-2">
             <Link className="nav-item" to="/account">
@@ -52,10 +56,6 @@ export default function Navigations({ watch, setWatch }) {
             <Link className="nav-item" to="/books">
               Books
             </Link>
-          </div>
-          <div id="nav-group-3">
-            {/* <Debug watch={watch} setWatch={setWatch} /> */}
-            <Debug />
           </div>
           <div id="nav-group-2">
             <Link className="nav-item" to="/login">

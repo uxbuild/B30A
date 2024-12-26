@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "./LoginSlice";
 import AlertMessage from "../AlertMessage/AlertMessage";
+import { useSelector, useDispatch } from "react-redux";
+
+// action generators
+import { login, logout } from "../../store/ConfirmLoginSlice";
 
 export default function Login() {
   // state vars:
@@ -18,6 +22,7 @@ export default function Login() {
   // const [firstname, setFirstname] = useState("")
   // const [lastname, setLastname] = useState("")
   // const [token, setToken] = useState("");
+  const dispatch = useDispatch();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -27,20 +32,19 @@ export default function Login() {
       //const email = email;
       //const password = form.password;
       const response = await loginUser({ email, password });
-      if(response.error){
+      if (response.error) {
         setMessage(response.error.data.message);
-      }else{
+      } else {
         // setToken(localStorage.getItem("token"));
         setMessage(response.data.message);
-        console.log('token: ', response.data.token);
-        localStorage.setItem("token", response.data.token);
+        console.log("token: ", response.data.token);
+        // localStorage.setItem("token", response.data.token);
+        dispatch(login());
         navigate("/account");
       }
       //console.log("login user response", response);
       //response.error && setError(response.error.data.message);
       //response.error && console.log("error message: ", error);
-
-      
     } catch (error) {
       // console.log('some error', error);
       console.error(error);
@@ -51,7 +55,6 @@ export default function Login() {
     <div>
       <h2>Login</h2>
       <form onSubmit={submit}>
-        
         <div className="form-group">
           <label>Username</label>
           <input

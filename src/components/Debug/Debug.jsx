@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+
+// action generators
 import { login, logout } from "../../store/ConfirmLoginSlice";
 
 // export default function Debug({ watch, setWatch }) {
@@ -47,12 +49,17 @@ export default function Debug() {
   //   }, [watch]);
   return (
     <>
-      <p className="debug-message">
-        <button type="button" onClick={handleClick}>
-          Toggle
-        </button>
-        <span> Login: {watchLogin.toString()} </span>
-      </p>
+      <div className="container debug-container">
+             <div className="flex-container">
+               <div id="nav-group-1">
+                 Login:
+               </div>
+              
+               <div id="nav-group-2">
+                Token:
+               </div>
+             </div>
+           </div>
     </>
   );
 }

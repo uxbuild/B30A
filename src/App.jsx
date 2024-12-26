@@ -7,10 +7,11 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
-import Navigations from "./components/Navigations";
+import Navbar from "./components/Navbar";
 import Books from "./components/Books";
 import SingleBook from "./components/SingleBook";
 import Lost from "./components/Lost";
+import Debug from "./components/Debug/Debug";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -22,7 +23,8 @@ function App() {
     <>
       <Router>
         <div>
-          <Navigations watch={watch} setWatch={setWatch} />
+          <Debug />
+          <Navbar />
           <Routes>
             <Route path="/" element={<Books />} />
             {/* <Route path="/login" element={<Login tokenId={TOKEN_ID} setTokenId={setToken} />} /> */}
