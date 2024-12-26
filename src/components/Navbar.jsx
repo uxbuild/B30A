@@ -4,25 +4,12 @@ import { Link } from "react-router-dom";
 import "../index.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getLogin } from "../store/ConfirmLoginSlice";
 
 export default function Navbar() {
-  // managing token state (??)
-  //   const [token, setToken] = useState(null);
+  const login = useSelector(getLogin);
 
-  // get login state from store.
-
-//   const token = localStorage.getItem("token");
-const [isLogin, setIsLogin] = useState(false);
-const login = useSelector((state) => state.login.value);
-
-if(login!==isLogin ){
-    setIsLogin(login);
-    // console.log('login token: ', localStorage.getItem("token"));    
-}
-useEffect(()=>{
-},[isLogin])
-
-  if (isLogin) {
+  if (login) {
     console.log("Navigation - there is a token");
 
     // return ("You are logged in.")

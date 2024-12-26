@@ -45,7 +45,7 @@ export default function Account() {
   }, [userData]);
 
   return (
-    <div>
+    <div className="container page-container">
       <h2>Account</h2>
       <p>First: {firstname}</p>
       <p>Last: {lastname}</p>

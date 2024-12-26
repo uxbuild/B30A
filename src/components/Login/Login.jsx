@@ -7,7 +7,11 @@ import AlertMessage from "../AlertMessage/AlertMessage";
 import { useSelector, useDispatch } from "react-redux";
 
 // action generators
-import { confirmLogin, confirmLogout } from "../../store/ConfirmLoginSlice";
+import {
+  getLogin,
+  confirmLogin,
+  confirmLogout,
+} from "../../store/ConfirmLoginSlice";
 
 export default function Login() {
   // state vars:
@@ -44,11 +48,8 @@ export default function Login() {
         setMessage(response.data.message);
         console.log("token: ", response.data.token);
         dispatch(confirmLogin());
-        // navigate("/account");
+        navigate("/account");
       }
-      //console.log("login user response", response);
-      //response.error && setError(response.error.data.message);
-      //response.error && console.log("error message: ", error);
     } catch (error) {
       // console.log('some error', error);
       console.error(error);

@@ -37,4 +37,9 @@ body {
   background-color: lightsalmon;
   padding: 1em;
   color:black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.page-container {
+  padding: 1em;
 }
