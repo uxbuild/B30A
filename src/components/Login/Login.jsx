@@ -7,12 +7,15 @@ import AlertMessage from "../AlertMessage/AlertMessage";
 import { useSelector, useDispatch } from "react-redux";
 
 // action generators
-import { login, logout } from "../../store/ConfirmLoginSlice";
+import { confirmLogin, confirmLogout } from "../../store/ConfirmLoginSlice";
 
 export default function Login() {
   // state vars:
   const navigate = useNavigate();
+
+  // action: async request to server
   const [loginUser] = useLoginMutation();
+
   const [submitted, setSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState(null);
@@ -31,16 +34,17 @@ export default function Login() {
       // const response = await registerUser(form).unwrap();
       //const email = email;
       //const password = form.password;
+
       const response = await loginUser({ email, password });
       if (response.error) {
         setMessage(response.error.data.message);
       } else {
         // setToken(localStorage.getItem("token"));
+        // localStorage.setItem("token", response.data.token);
         setMessage(response.data.message);
         console.log("token: ", response.data.token);
-        // localStorage.setItem("token", response.data.token);
-        dispatch(login());
-        navigate("/account");
+        dispatch(confirmLogin());
+        // navigate("/account");
       }
       //console.log("login user response", response);
       //response.error && setError(response.error.data.message);
@@ -61,7 +65,7 @@ export default function Login() {
             type="text"
             className="form-control"
             aria-describedby="emailHelp"
-            placeholder="Email"
+            placeholder="bob@bob.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -72,7 +76,7 @@ export default function Login() {
             type="password"
             className="form-control"
             id="exampleInputPassword1"
-            placeholder="Password"
+            placeholder="bob"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

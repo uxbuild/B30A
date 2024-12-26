@@ -7,11 +7,11 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
-import Navbar from "./components/Navbar";
 import Books from "./components/Books";
 import SingleBook from "./components/SingleBook";
-import Lost from "./components/Lost";
+import Navbar from "./components/Navbar";
 import Debug from "./components/Debug/Debug";
+import Lost from "./components/Lost";
 
 function App() {
   const [token, setToken] = useState(null);

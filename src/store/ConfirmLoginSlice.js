@@ -5,18 +5,21 @@ const initialState = {
 }
 
 // share state of whether there is a token
-export const ConfirmLoginSlice = createSlice({
+export const confirmLoginSlice = createSlice({
     name: "confirmLogin",
     initialState,
     reducers: {
-        login: (state)=>{
+        confirmLogin: (state)=>{
+            console.log('dispatch confirmLogin');          
             state.value = true;
         },
-        logout: (state)=>{
+        confirmLogout: (state)=>{
             state.value = false;
+            console.log('dispatch confirmLogout');
         },
     }
 })
 
-export const { login, logout } = ConfirmLoginSlice.actions
-export default ConfirmLoginSlice.reducer
+export const { confirmLogin, confirmLogout } = confirmLoginSlice.actions
+export const getLogin = (state) => state.confirmLogin.value
+export default confirmLoginSlice.reducer

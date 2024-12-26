@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
 import { useState, useEffect } from "react";
-import Debug from "./Debug/Debug";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Navbar() {
