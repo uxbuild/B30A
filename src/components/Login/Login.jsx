@@ -16,6 +16,7 @@ import {
 export default function Login() {
   // state vars:
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(getLogin);
 
   // action: async request to server
   const [loginUser] = useLoginMutation();

@@ -1,18 +1,18 @@
 import { api } from "../../api/api";
-import { TOKEN_ID } from "../../other/token";
+// import { TOKEN_ID } from "../../other/token";
 
-const accountApi = api.injectEndpoints({
+const booksApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUserAccount: builder.query({
+    getBookList: builder.query({
       query: () => ({
-        url: '/users/me',
+        url: '/books',
         method: "GET",
         headers:{
             "Content-Type": "applicaton/json",
-            Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
+            // Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
         },
       }),
-      providesTags: ["Account"],
+      providesTags: ["Books"],
     }),
 
     // updateUser: builder.mutation({
@@ -28,4 +28,4 @@ const accountApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetUserAccountQuery } = accountApi;
+export const { useGetBookList } = booksApi;

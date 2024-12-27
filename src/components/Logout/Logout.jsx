@@ -1,15 +1,29 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { TOKEN_ID } from "../../other/token";
+import { useDispatch } from "react-redux";
+// action generators
+import {
+  getLogin,
+  confirmLogin,
+  confirmLogout,
+} from "../../store/ConfirmLoginSlice";
 
-export default function Login() {
+export default function Logout() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   //should save token id.
   // should check if token id exists.
   try {
-    localStorage.removeItem("token");
+    localStorage.removeItem(TOKEN_ID);
+    dispatch(confirmLogout());
     // setToken(null);
-    return "You have been logged out.";
+    return <div className="page-container">You have been logged out.</div>;
     // navigate()
   } catch (error) {
-    return `An error occurred: ${error.message}`;
+    return (
+      <div className="page-container">
+        `An error occurred: ${error.message}`
+      </div>
+    );
   }
 }

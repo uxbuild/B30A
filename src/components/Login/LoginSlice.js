@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api/api";
-
+import { TOKEN_ID } from "../../other/token";
 
 
 
@@ -22,7 +22,7 @@ const loginApi = api.injectEndpoints({
   
   const storeToken = (state, { payload }) => {
     console.log("login slice - store token..");
-    localStorage.setItem("token", payload.token);
+    localStorage.setItem(TOKEN_ID, payload.token);
   };
   
   const loginSlice = createSlice({

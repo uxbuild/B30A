@@ -7,7 +7,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
-import Books from "./components/Books";
+import BookList from "./components/Books/BookList";
 import SingleBook from "./components/SingleBook";
 import Navbar from "./components/Navbar";
 import Debug from "./components/Debug/Debug";
@@ -26,14 +26,14 @@ function App() {
           <Debug />
           <Navbar />
           <Routes>
-            <Route path="/" element={<Books />} />
+            <Route path="/" element={<BookList />} />
             {/* <Route path="/login" element={<Login tokenId={TOKEN_ID} setTokenId={setToken} />} /> */}
             <Route path="/login" element={<Login />} />
             {/* <Route path="/logout" element={<Logout tokenId={TOKEN_ID} setToken={setToken} />} /> */}
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/books" element={<Books />} />
+            <Route path="/books" element={<BookList />} />
             <Route path="/books/:id" element={<SingleBook />} />
             <Route path="*" element={<Lost />} />
           </Routes>
