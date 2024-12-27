@@ -15,7 +15,7 @@ const loginApi = api.injectEndpoints({
             password,
           },
         }),
-        invalidatesTags: ["User"],
+        invalidatesTags: ["Users"],
       }),
     }),
   });

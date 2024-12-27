@@ -27,13 +27,13 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<BookList />} />
+            <Route path="/books" element={<BookList />} />
             {/* <Route path="/login" element={<Login tokenId={TOKEN_ID} setTokenId={setToken} />} /> */}
-            <Route path="/login" element={<Login />} />
             {/* <Route path="/logout" element={<Logout tokenId={TOKEN_ID} setToken={setToken} />} /> */}
+            <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/books" element={<BookList />} />
             <Route path="/books/:id" element={<SingleBook />} />
             <Route path="*" element={<Lost />} />
           </Routes>

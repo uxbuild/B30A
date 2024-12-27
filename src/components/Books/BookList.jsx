@@ -2,25 +2,34 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useGetBookList } from "./BookListSlice";
+import { useGetBookListQuery } from "./BookListSlice";
+import BookListItem from "../BookListItem/BookListItem";
 
 export default function Books() {
-  
-  const [bookList, setBookList] = useState([]);
-  // const { data, isSuccess } = useGetBookList();
+  const [books, setBooks] = useState([]);
+  const { data, isSuccess } = useGetBookListQuery();
 
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     setBookList(
-  //       updatedBookList.map((i) => {
-  //         return i;
-  //       })
-  //     );
-  //     console.log("book list", bookList);
-  //   } else {
-  //     console.log("Error retrieving book list");
-  //   }
-  // }, [updatedBookList]);
+  useEffect(() => {
+    console.log("useEffect..");
 
-  return <div className="page-container">Books</div>;
+    if (isSuccess) {
+      console.log("BOOKLIST success");
+      console.log("books data", data.books);
+      // console.log("books stringified", JSON.stringify(data.books));
+      // console.log(JSON.parse(JSON.stringify(data.books)));
+      setBooks(JSON.parse(JSON.stringify(data.books)));
+      // setBooks(["hello"]);
+      // console.log("updated books", books);
+    }
+  }, [data, isSuccess]);
+
+  return (
+    <div className="page-container">
+      <h2>Books: {books.length}</h2>
+      
+      {books.map((item, index) => {
+        return <BookListItem key={index} num={index} title={item.title} />;
+      })}
+    </div>
+  );
 }

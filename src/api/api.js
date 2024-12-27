@@ -8,7 +8,7 @@ export const api = createApi({
       baseUrl: API_URL,
     }),
     // how to handle multiple endpoints??
-    tagTypes: ["Books"],
+    tagTypes: ["Users","Books"],
     endpoints: () => ({}),
   });
   
