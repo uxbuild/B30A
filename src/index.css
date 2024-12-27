@@ -43,3 +43,11 @@ body {
 .page-container {
   padding: 1em;
 }
+
+.book-item-available {
+  background-color: lightgreen;
+}
+.book-item-checked-out {
+  background-color: lightsalmon !important;
+  color:darkred !important;
+}

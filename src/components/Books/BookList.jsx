@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetBookListQuery } from "./BookListSlice";
 import BookListItem from "../BookListItem/BookListItem";
+import { Table } from "react-bootstrap";
 
 export default function Books() {
   const [books, setBooks] = useState([]);
@@ -24,12 +25,24 @@ export default function Books() {
   }, [data, isSuccess]);
 
   return (
-    <div className="page-container">
+    <div className="container page-container">
       <h2>Books: {books.length}</h2>
-      
-      {books.map((item, index) => {
-        return <BookListItem key={index} num={index} title={item.title} />;
+
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Available</th>
+        </tr>
+      </thead>
+      <tbody>
+        {books.map((item, index) => {
+        return <BookListItem key={index} num={index} title={item.title} author={item.author} available={item.available} />;
       })}
+      </tbody>
+    </Table>
     </div>
   );
 }
