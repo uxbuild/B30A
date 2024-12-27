@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="flex-container">
           <div id="nav-group-1">
             <Link className="nav-item" to="/books">
-              Books
+              Browse Books
             </Link>
           </div>
           <div id="nav-group-2">
@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="flex-container">
           <div id="nav-group-1">
             <Link className="nav-item" to="/books">
-              Books
+               Book List
             </Link>
           </div>
           <div id="nav-group-2">

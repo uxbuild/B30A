@@ -7,11 +7,12 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
-import BookList from "./components/Books/BookList";
+import BookList from "./components/BookList/BookList";
 import SingleBook from "./components/SingleBook";
 import Navbar from "./components/Navbar";
 import Debug from "./components/Debug/Debug";
 import Lost from "./components/Lost";
+import BookDetails from "./components/BookDetails/BookDetails";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -34,7 +35,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/books/:id" element={<SingleBook />} />
+            <Route path="/books/:id" element={<BookDetails />} />
             <Route path="*" element={<Lost />} />
           </Routes>
         </div>

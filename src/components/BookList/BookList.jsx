@@ -39,7 +39,7 @@ export default function Books() {
       </thead>
       <tbody>
         {books.map((item, index) => {
-        return <BookListItem key={index} num={index} title={item.title} author={item.author} available={item.available} />;
+        return <BookListItem key={index} num={index} id={item.id} title={item.title} author={item.author} available={item.available} />;
       })}
       </tbody>
     </Table>
