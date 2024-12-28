@@ -12,6 +12,7 @@ export default function Account() {
   // const [user, setUser] = useState({});
   // const [userdata, setUserData] = useState(null);
   // const [id, setId] = useState(null);
+  const [accountId, setAccountId] = useState(null);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -27,8 +28,9 @@ export default function Account() {
       console.log("Account success useEffect..");
       console.log('data', userData);
       // setUserData(newUserData);
-      user.id = userData.id;
-      user.firstname = userData.firstname;
+      // user.id = userData.id;
+      // user.firstname = userData.firstname;
+      setAccountId(userData.id);
       setFirstname(userData.firstname);
       setLastname(userData.lastname);
       setEmail(userData.email);
@@ -45,8 +47,9 @@ export default function Account() {
   }, [userData]);
 
   return (
-    <div className="container page-container">
+    <div className=" container page-container">
       <h2>Account</h2>
+      <p>Account #: {accountId}</p>
       <p>First: {firstname}</p>
       <p>Last: {lastname}</p>
       <p>Email: {email}</p>

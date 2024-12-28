@@ -13,7 +13,9 @@ body {
 .error-message {
   display: inline-block;
   color: red;
-  background-color: yellow
+  background-color: yellow;
+  padding: .5em;
+  margin: 1em;
 }
 
 .flex-container {
@@ -26,6 +28,19 @@ body {
   display: inline-block;
   padding: 1em;
 }
+.nav-item-active {
+  display: inline-block;
+  padding: 1em;
+  /* background-color: lightgreen; */
+  /* text-decoration: none; */
+  color: grey
+}
+.nav-item-pending {
+  display: inline-block;
+  padding: 1em;
+  background-color: yellow;
+}
+
 /* Add your own custom styles here */
 .debug-message {
   background-color: yellow;
@@ -50,4 +65,9 @@ body {
 .book-item-checked-out {
   background-color: lightsalmon !important;
   color:darkred !important;
+}
+
+.web-form {
+  width: 50%;
+  margin: 0, auto;
 }
