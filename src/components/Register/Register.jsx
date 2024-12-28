@@ -76,7 +76,7 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div className="container page-container">
       <h2>Register</h2>
       <form onSubmit={submit}>
         <div className="form-group">

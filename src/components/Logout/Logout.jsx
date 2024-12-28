@@ -17,7 +17,7 @@ export default function Logout() {
     localStorage.removeItem(TOKEN_ID);
     dispatch(confirmLogout());
     // setToken(null);
-    return <div className="page-container">You have been logged out.</div>;
+    return <div className="container page-container">You have been logged out.</div>;
     // navigate()
   } catch (error) {
     return (

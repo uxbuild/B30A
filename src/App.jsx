@@ -8,7 +8,6 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
 import BookList from "./components/BookList/BookList";
-import SingleBook from "./components/SingleBook";
 import Navbar from "./components/Navbar";
 import Debug from "./components/Debug/Debug";
 import Lost from "./components/Lost";
@@ -16,6 +15,8 @@ import BookDetails from "./components/BookDetails/BookDetails";
 
 function App() {
   const [token, setToken] = useState(null);
+ 
+
   const TOKEN_ID = "BOOK_BUDDY_TOKEN_ID";
   // debug
   const [watch, setWatch] = useState(0);

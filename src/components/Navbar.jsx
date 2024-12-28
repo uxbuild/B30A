@@ -20,6 +20,9 @@ export default function Navbar() {
             <Link className="nav-item" to="/books">
               Browse Books
             </Link>
+            <Link className="nav-item" to="/register">
+             Register
+            </Link>
           </div>
           <div id="nav-group-2">
             <Link className="nav-item" to="/account">
@@ -41,6 +44,9 @@ export default function Navbar() {
           <div id="nav-group-1">
             <Link className="nav-item" to="/books">
                Book List
+            </Link>
+            <Link className="nav-item" to="/register">
+             Register
             </Link>
           </div>
           <div id="nav-group-2">

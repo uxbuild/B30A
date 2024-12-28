@@ -8,7 +8,7 @@ const accountApi = api.injectEndpoints({
         url: '/users/me',
         method: "GET",
         headers:{
-            "Content-Type": "applicaton/json",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
         },
       }),
