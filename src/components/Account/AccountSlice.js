@@ -1,4 +1,5 @@
 import { api } from "../../api/api";
+import { TOKEN_ID } from "../../other/token";
 
 const accountApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -7,8 +8,8 @@ const accountApi = api.injectEndpoints({
         url: '/users/me',
         method: "GET",
         headers:{
-            "Content-Type": "applicaton/json",
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
         },
       }),
       providesTags: ["Account"],

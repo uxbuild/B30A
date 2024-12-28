@@ -5,16 +5,17 @@ import { useRegisterMutation } from "./RegisterSlice";
 // import ErrorMessage from "../ErrorMessage/ErrorMessage";
 // import Message from "../AlertMessage/AlertMessage";
 import AlertMessage from "../AlertMessage/AlertMessage";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export default function Register() {
-
   //navigate hook
   const navigate = useNavigate();
-  
+
   //state user data.
   const [form, setForm] = useState({
-    fn: "",
-    ln: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
   });
@@ -32,8 +33,7 @@ export default function Register() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log('change', `${e.target.name} : ${e.target.value}`);
-    
+    console.log("change", `${e.target.name} : ${e.target.value}`);
   };
 
   //on form submit..
@@ -47,11 +47,11 @@ export default function Register() {
     try {
       const email = form.email;
       const password = form.password;
-      const firstname = form.fn;
-      const lastname= form.ln;
+      const firstname = form.firstname;
+      const lastname= form.lastname;
 
       const response = await registerUser({ firstname, lastname, email, password });
-      
+
       console.log("register user response", response);
       if (response.error) {
         setIsSuccess(false);
@@ -76,61 +76,54 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div className="container page-container">
       <h2>Register</h2>
-      <form onSubmit={submit}>
-        <div className="form-group">
-          <label>First name</label>
-          <input
+
+      <Form className="web-form">
+        {/* FIRST NAME */}
+        <Form.Group
+          className="mb-3"
+          controlId="formFirstName"
+          onSubmit={submit}
+        >
+          <Form.Label>First name:</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            id="inputFirstName"
-            placeholder="Enter first name"
-            name="fn"
+            placeholder="First name.."
+            name="firstname"
             onChange={change}
           />
-        </div>
-        <div className="form-group">
-          <label>Last name</label>
-          <input
+        </Form.Group>
+        {/* LAST NAME */}
+        <Form.Group className="mb-3" controlId="formLastName">
+          <Form.Label>Last name:</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            id="inputLastName"
-            placeholder="Enter last name"
-            name="ln"
+            placeholder="Last name.."
+            name="lastname"
             onChange={change}
           />
-        </div>
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            name="email"
-            required
-            onChange={change}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
+        </Form.Group>
+        {/*  EMAIL */}
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control type="email" placeholder="Email.." name="email" onChange={change} />
+        </Form.Group>
+        {/* PASSWORD */}
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="password.."
             name="password"
-            required
             onChange={change}
           />
-        </div>
-        <button type="submit" className="btn btn-primary">
+          {/* SUBMIT button */}
+        </Form.Group>
+        <Button variant="primary" type="button" onClick={submit}>
           Submit
-        </button>
-      </form>
-      {/* <ErrorMessage message="some error.." /> */}
+        </Button>
+      </Form>
       {message && <AlertMessage type="error" message={message} />}
     </div>
   );

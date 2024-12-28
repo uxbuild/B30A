@@ -16,6 +16,7 @@ import {
 export default function Login() {
   // state vars:
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(getLogin);
 
   // action: async request to server
   const [loginUser] = useLoginMutation();
@@ -57,7 +58,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="container page-container">
       <h2>Login</h2>
       <form onSubmit={submit}>
         <div className="form-group">
