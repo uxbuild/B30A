@@ -16,16 +16,16 @@ export default function NavTitle() {
         setTitle("Browse Books");
         break;
       case "/":
-        setTitle("Catalog: Books");
+        setTitle("BOOK BUDDY Catalog");
         break;
       case "/login":
-        setTitle("Login");
+        setTitle("BOOK BUDDY Login");
         break;
       case "/account":
-        setTitle("Account Information");
+        setTitle("BOOK BUDDY Account Summary");
         break;
       case "/register":
-        setTitle("Registration");
+        setTitle("BOOK BUDDY Account Registration");
         break;
       default:
         break;

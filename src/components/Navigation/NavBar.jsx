@@ -12,57 +12,95 @@ import NavSearchField from "./NavSearchField";
 import { useLocation } from "react-router-dom";
 import NavTitle from "./NavTitle";
 import NavLinks from "./NavLinks";
+// import { useEffect } from "react";
 
 export default function NavBar() {
   const login = useSelector(getLogin);
   const location = useLocation();
+
+  const [isBrowse, setIsBrowse] = useState(false);
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        setIsBrowse(true);
+        break;
+      case "/books":
+        setIsBrowse(true);
+        break;
+      default:
+        setIsBrowse(false);
+    }
+  }, [location.pathname]);
 
   function onFilter(e) {
     e.preventDefault();
     console.log("onFilter", e.target.value);
   }
 
-  if (login) {
-    // console.log("Navigation - there is a token");
-    // return ("You are logged in.")
-    return (
-      <div className="container">
-        <div className="flex-container">
-          <div id="nav-group-1">
-            <Link className="nav-item" to="/books">
-              Browse Books
-            </Link>
-          </div>
-          <div id="nav-group-2">
-            <Link className="nav-item" to="/account">
-              Account
-            </Link>
-            <Link className="nav-item" to="/logout">
-              Logout
-            </Link>
-          </div>
+  return (
+    <div className="container nav-container">
+      <div className="flex-container">
+        <div id="nav-group-1" className="nav-group">
+          <NavTitle />
         </div>
-      </div>
-    );
-  } else {
-    console.log("Navigation - token not found");
-    // return "You are not logged in.";
-    return (
-      <div className="container nav-container">
-        <div className="flex-container">
-          <div id="nav-group-1" className="nav-group"> 
-              <NavTitle />
-          </div>
+        {isBrowse && (
           <div className="nav-group">
             <div className="nav-item">
               <NavSearchField />
             </div>
           </div>
-          <div id="nav-group-2" className="nav-group">
-           <NavLinks />
-          </div>
+        )}
+
+        <div id="nav-group-2" className="nav-group">
+          <NavLinks />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+
+  // if (login) {
+  //   // console.log("Navigation - there is a token");
+  //   // return ("You are logged in.")
+  //   return (
+  //     <div className="container">
+  //       <div className="flex-container">
+  //         <div id="nav-group-1">
+  //           <Link className="nav-item" to="/books">
+  //             Browse Books
+  //           </Link>
+  //         </div>
+  //         <div id="nav-group-2">
+  //           <Link className="nav-item" to="/account">
+  //             Account
+  //           </Link>
+  //           <Link className="nav-item" to="/logout">
+  //             Logout
+  //           </Link>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // } else {
+  //   console.log("Navigation - token not found");
+  //   // return "You are not logged in.";
+  //   return (
+  //     <div className="container nav-container">
+  //       <div className="flex-container">
+  //         <div id="nav-group-1" className="nav-group">
+  //             <NavTitle />
+  //         </div>
+
+  //         <div className="nav-group">
+  //           <div className="nav-item">
+  //             <NavSearchField />
+  //           </div>
+  //         </div>
+  //         <div id="nav-group-2" className="nav-group">
+  //          <NavLinks />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 }
