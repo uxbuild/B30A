@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 // action generators
 import { getLogin } from "../../store/ConfirmLoginSlice";
 
+//location
+import { useLocation } from "react-router-dom";
+
 // export default function Debug({ watch, setWatch }) {
 // export default function Debug({ loggedIn }) {
 
@@ -13,6 +16,7 @@ export default function Debug() {
   //DISPATCH TO STORE..
   const login = useSelector(getLogin);
   const token = localStorage.getItem("token");
+  const location = useLocation();
 
   return (
     <>
@@ -22,7 +26,7 @@ export default function Debug() {
             <div className="nav-item">Login: {login.toString()}</div>
             {/* <div className="nav-item">Token: {token}</div> */}
           </div>
-
+        <div className="nav-item">Location: {location.pathname}</div>
           <div id="nav-group-2">
             <div className="nav-item">Debug</div>
           </div>

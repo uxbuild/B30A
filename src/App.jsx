@@ -8,7 +8,7 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
 import BookList from "./components/BookList/BookList";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/Navigation/Navbar";
 import Debug from "./components/Debug/Debug";
 import Lost from "./components/Lost";
 import BookDetails from "./components/BookDetails/BookDetails";
@@ -26,7 +26,7 @@ function App() {
       <Router>
         <div>
           <Debug />
-          <Navbar />
+          <NavBar />
           <Routes>
             <Route path="/" element={<BookList />} />
             <Route path="/books" element={<BookList />} />

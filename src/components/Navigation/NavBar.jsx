@@ -2,13 +2,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import "../index.css";
+import "../../index.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getLogin } from "../store/ConfirmLoginSlice";
+import { getLogin } from "../../store/ConfirmLoginSlice";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import NavSearchField from "./NavSearchField";
+import { useLocation } from 'react-router-dom'
 
-export default function Navbar() {
+
+export default function NavBar() {
   const login = useSelector(getLogin);
+  const location = useLocation();
+
+  function onFilter(e) {
+    e.preventDefault();
+    console.log("onFilter", e.target.value);
+  }
 
   if (login) {
     // console.log("Navigation - there is a token");
@@ -17,6 +28,7 @@ export default function Navbar() {
       <div className="container">
         <div className="flex-container">
           <div id="nav-group-1">
+            <div className="nav-item">{location.pathname}</div>
             <Link className="nav-item" to="/books">
               Browse Books
             </Link>
@@ -36,25 +48,34 @@ export default function Navbar() {
     console.log("Navigation - token not found");
     // return "You are not logged in.";
     return (
-      <div className="container">
+      <div className="container nav-container">
         <div className="flex-container">
           <div id="nav-group-1">
-            {/* className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "active" : ""
-  } */}
-            {/* <NavLink className="nav-item" to="/books"> */}
-            <NavLink className={({ isActive, isPending }) =>
-    isPending ? "nav-item-pending" : isActive ? "nav-item-active" : "nav-item"
-  } to="/books">
-               Book List
+          <div className="nav-item">{location.pathname}</div>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "nav-item-pending"
+                  : isActive
+                  ? "nav-item-active"
+                  : "nav-item"
+              }
+              to="/books"
+            >
+              Book List
             </NavLink>
+          </div>
+          <div className="nav-group">
+            <div className="nav-item">
+              <NavSearchField />
+            </div>
           </div>
           <div id="nav-group-2">
             <NavLink className="nav-item" to="/login">
               Login
             </NavLink>
-            <NavLink className="nav-item" to="/register" >
-             Register
+            <NavLink className="nav-item" to="/register">
+              Register
             </NavLink>
           </div>
         </div>
