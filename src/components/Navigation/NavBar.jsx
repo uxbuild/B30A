@@ -9,8 +9,9 @@ import { getLogin } from "../../store/ConfirmLoginSlice";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import NavSearchField from "./NavSearchField";
-import { useLocation } from 'react-router-dom'
-
+import { useLocation } from "react-router-dom";
+import NavTitle from "./NavTitle";
+import NavLinks from "./NavLinks";
 
 export default function NavBar() {
   const login = useSelector(getLogin);
@@ -28,7 +29,6 @@ export default function NavBar() {
       <div className="container">
         <div className="flex-container">
           <div id="nav-group-1">
-            <div className="nav-item">{location.pathname}</div>
             <Link className="nav-item" to="/books">
               Browse Books
             </Link>
@@ -50,33 +50,16 @@ export default function NavBar() {
     return (
       <div className="container nav-container">
         <div className="flex-container">
-          <div id="nav-group-1">
-          <div className="nav-item">{location.pathname}</div>
-            <NavLink
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "nav-item-pending"
-                  : isActive
-                  ? "nav-item-active"
-                  : "nav-item"
-              }
-              to="/books"
-            >
-              Book List
-            </NavLink>
+          <div id="nav-group-1" className="nav-group"> 
+              <NavTitle />
           </div>
           <div className="nav-group">
             <div className="nav-item">
               <NavSearchField />
             </div>
           </div>
-          <div id="nav-group-2">
-            <NavLink className="nav-item" to="/login">
-              Login
-            </NavLink>
-            <NavLink className="nav-item" to="/register">
-              Register
-            </NavLink>
+          <div id="nav-group-2" className="nav-group">
+           <NavLinks />
           </div>
         </div>
       </div>

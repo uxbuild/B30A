@@ -26,7 +26,7 @@ export default function Books() {
 
   return (
     <div className="container page-container">
-      <h2>Books: {books.length}</h2>
+      {/* <h2>Books: {books.length}</h2> */}
 
       <Table striped bordered hover>
       <thead>

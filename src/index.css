@@ -28,8 +28,10 @@ body {
   background-color: aliceblue;
 }
 .nav-group {
-  display: inline-block;
-  background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: cadetblue; */
 }
 .nav-item {
   display: inline-block;
@@ -42,6 +44,22 @@ body {
   /* text-decoration: none; */
   color: grey
 }
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5em;
+  /* background-color: lightseagreen; */
+}
+
+
+
+.nav-item a {
+  display:inline;
+  margin:.5em;
+}
+
 .nav-item-pending {
   display: inline-block;
   padding: 1em;

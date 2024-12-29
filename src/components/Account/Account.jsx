@@ -48,10 +48,10 @@ export default function Account() {
 
   return (
     <div className=" container page-container">
-      <h2>Account</h2>
-      <p>Account #: {accountId}</p>
-      <p>First: {firstname}</p>
-      <p>Last: {lastname}</p>
+      {/* <h2>Account</h2> */}
+      <p>Account ID: {accountId}</p>
+      <p>First Name: {firstname}</p>
+      <p>Last Name: {lastname}</p>
       <p>Email: {email}</p>
       <p>
       { !!books.length &&  "You have books checked out."}

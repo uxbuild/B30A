@@ -77,7 +77,7 @@ export default function Register() {
 
   return (
     <div className="container page-container">
-      <h2>Register</h2>
+      {/* <h2>Register</h2> */}
 
       <Form className="web-form">
         {/* FIRST NAME */}
