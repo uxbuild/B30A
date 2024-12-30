@@ -30,7 +30,7 @@ export default function Debug() {
           </div>
           <div id="nav-group-2">
             <div className="nav-item">Location: {location.pathname}</div>
-            <div className="nav-item">Search key: {searchKey}</div>
+            <div className="nav-item">Search: {searchKey}</div>
           </div>
           <div id="nav-group-3">
             <div className="nav-item">Debug</div>

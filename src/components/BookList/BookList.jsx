@@ -5,10 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { useGetBookListQuery } from "./BookListSlice";
 import BookListItem from "../BookListItem/BookListItem";
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { getSearchKey } from "../../store/searchKeySlice";
 
 export default function Books() {
+  // track and render books..
   const [books, setBooks] = useState([]);
+
+  // get books..
   const { data, isSuccess } = useGetBookListQuery();
+
+  // search books: search key to filter display of books.
+  const searchKey = useSelector(getSearchKey);
 
   useEffect(() => {
     console.log("useEffect..");
@@ -24,25 +32,43 @@ export default function Books() {
     }
   }, [data, isSuccess]);
 
+  //return boolean, used in books array filter.
+  function searchBook(book, key){
+    return book.title.toLowerCase().search(key.toLowerCase())>-1;
+  }
+
   return (
     <div className="container page-container">
       {/* <h2>Books: {books.length}</h2> */}
 
       <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Available</th>
-        </tr>
-      </thead>
-      <tbody>
-        {books.map((item, index) => {
-        return <BookListItem key={index} num={index} id={item.id} title={item.title} author={item.author} available={item.available} book={item} />;
-      })}
-      </tbody>
-    </Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            // filter result based on searchKey if it is not blank.
+            books.filter((book)=>{return book.title.toLowerCase().search(searchKey.toLowerCase())>-1}).map((item, index) => {
+              return (
+                <BookListItem
+                  key={index}
+                  num={index}
+                  id={item.id}
+                  title={item.title}
+                  author={item.author}
+                  available={item.available}
+                  book={item}
+                />
+              );
+            })
+          }
+        </tbody>
+      </Table>
     </div>
   );
 }
