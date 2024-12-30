@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-// action generators
-import { getLogin } from "../../store/ConfirmLoginSlice";
+// store app vars..getters (slice actions)
+import { getLogin } from "../../store/confirmLoginSlice";
+import { getSearchKey } from "../../store/searchKeySlice";
 
 //location
 import { useLocation } from "react-router-dom";
@@ -15,6 +16,7 @@ import { useLocation } from "react-router-dom";
 export default function Debug() {
   //DISPATCH TO STORE..
   const login = useSelector(getLogin);
+  const searchKey = useSelector(getSearchKey);
   const token = localStorage.getItem("token");
   const location = useLocation();
 
@@ -26,8 +28,11 @@ export default function Debug() {
             <div className="nav-item">Login: {login.toString()}</div>
             {/* <div className="nav-item">Token: {token}</div> */}
           </div>
-        <div className="nav-item">Location: {location.pathname}</div>
           <div id="nav-group-2">
+            <div className="nav-item">Location: {location.pathname}</div>
+            <div className="nav-item">Search key: {searchKey}</div>
+          </div>
+          <div id="nav-group-3">
             <div className="nav-item">Debug</div>
           </div>
         </div>

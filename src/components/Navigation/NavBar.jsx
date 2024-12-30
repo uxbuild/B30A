@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import "../../index.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getLogin } from "../../store/ConfirmLoginSlice";
+import { getLogin } from "../../store/confirmLoginSlice";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import NavSearchField from "./NavSearchField";

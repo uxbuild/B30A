@@ -5,16 +5,36 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getLogin } from "../../store/confirmLoginSlice";
 
-export default function NavLinks(){
+export default function NavLinks() {
+  const isLoggedIn = useSelector(getLogin);
 
-    return (
-        <div className="nav-item">
-            <NavLink className="nav-link" to="/">Home</NavLink>
-            <NavLink className="nav-link" to="/login">Login</NavLink>
-            <NavLink className="nav-link" to="/register">Register</NavLink>
-            <NavLink className="nav-link" to="/account">Account</NavLink>
-        </div>
-        
-    )
+  return (
+    <div className="nav-item">
+      <NavLink className="nav-link" to="/">
+        Home
+      </NavLink>
+      {isLoggedIn && (
+        <NavLink className="nav-link" to="/logout">
+          Logout
+        </NavLink>
+      )}
+      {!isLoggedIn && (
+        <NavLink className="nav-link" to="/login">
+          Login
+        </NavLink>
+      )}
+      {/* <NavLink className="nav-link" to="/login">
+        Login
+      </NavLink> */}
+      <NavLink className="nav-link" to="/register">
+        Register
+      </NavLink>
+      <NavLink className="nav-link" to="/account">
+        Account
+      </NavLink>
+    </div>
+  );
 }

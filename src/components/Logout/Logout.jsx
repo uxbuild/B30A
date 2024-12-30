@@ -6,7 +6,7 @@ import {
   getLogin,
   confirmLogin,
   confirmLogout,
-} from "../../store/ConfirmLoginSlice";
+} from "../../store/confirmLoginSlice";
 
 export default function Logout() {
   const dispatch = useDispatch();
@@ -17,7 +17,9 @@ export default function Logout() {
     localStorage.removeItem(TOKEN_ID);
     dispatch(confirmLogout());
     // setToken(null);
-    return <div className="container page-container">You have been logged out.</div>;
+    return (
+      <div className="container page-container">You have been logged out.</div>
+    );
     // navigate()
   } catch (error) {
     return (

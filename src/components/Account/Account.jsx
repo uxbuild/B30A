@@ -8,7 +8,7 @@ export default function Account() {
   const navigate = useNavigate();
 
   // init request response.
-  const { data:userData, isSuccess } = useGetUserAccountQuery();
+  const { data: userData, isSuccess } = useGetUserAccountQuery();
   // const [user, setUser] = useState({});
   // const [userdata, setUserData] = useState(null);
   // const [id, setId] = useState(null);
@@ -26,22 +26,13 @@ export default function Account() {
     if (isSuccess) {
       // update user info.. what about STORE??
       console.log("Account success useEffect..");
-      console.log('data', userData);
-      // setUserData(newUserData);
-      // user.id = userData.id;
-      // user.firstname = userData.firstname;
+      console.log("data", userData);
+
       setAccountId(userData.id);
       setFirstname(userData.firstname);
       setLastname(userData.lastname);
       setEmail(userData.email);
       setBooks([...userData.books]);
-      // setFirstname(userData.firstname);
-      // user.lastname = userData.lastname;
-      // user.email = userData.email;
-      // user.books = [...userData.books];
-      // console.log('user', user);
-      
-
     }
     // console.log('user: ', user);
   }, [userData]);
@@ -54,9 +45,9 @@ export default function Account() {
       <p>Last Name: {lastname}</p>
       <p>Email: {email}</p>
       <p>
-      { !!books.length &&  "You have books checked out."}
-      {!books.length && "No books checked out."}
+        {!!books.length && "You have books checked out."}
+        {!books.length && "No books checked out."}
       </p>
     </div>
-  )
+  );
 }

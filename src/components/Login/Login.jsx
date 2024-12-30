@@ -11,7 +11,7 @@ import {
   getLogin,
   confirmLogin,
   confirmLogout,
-} from "../../store/ConfirmLoginSlice";
+} from "../../store/confirmLoginSlice";
 
 export default function Login() {
   // state vars:
