@@ -40,9 +40,9 @@ export default function BookDetails() {
 
   return (
     <div className="container page-container">
-      <h2>Book Details</h2>
+      {/* <h2>Book Details</h2> */}
       {/* {isSuccess ? <p>Title: {bookTitle}</p> : <p>No book info..</p>} */}
-      {isSuccess ? (
+      {/* {isSuccess ? (
         <Card style={{ width: "18rem" }}>
           <Card.Img variant="top" src={bookCoverImage} />
           <Card.Body>
@@ -55,7 +55,29 @@ export default function BookDetails() {
         </Card>
       ) : (
         <p>No book info.</p>
-      )}
+      )} */}
+
+      <div className="flex-container">
+        <div className="account-info-container">
+          <div className="account-info-item">
+            <span className="form-label">Title: </span>
+            <span>{bookTitle}</span>
+          </div>
+          <div className="account-info-item">
+          <span className="form-label">Author: </span>
+          <span>{bookAuthor}</span>
+          </div>
+          <div className="account-info-item">
+          <span className="form-label">Description: </span>
+          <span>{bookDescription}</span>
+          </div>
+        </div>
+        <div className="account-info-container">
+          <div className="account-info-item">
+            <img src={bookCoverImage} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

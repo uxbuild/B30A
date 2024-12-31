@@ -12,6 +12,8 @@ import NavSearchField from "./NavSearchField";
 import { useLocation } from "react-router-dom";
 import NavTitle from "./NavTitle";
 import NavLinks from "./NavLinks";
+// import { Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { useEffect } from "react";
 
 export default function NavBar() {
@@ -19,8 +21,7 @@ export default function NavBar() {
   const location = useLocation();
 
   const [isBrowse, setIsBrowse] = useState(false);
-  console.log(`browser REFRESH: ${login}` );
-  
+  console.log(`browser REFRESH: ${login}`);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -44,7 +45,20 @@ export default function NavBar() {
     <div className="container nav-container">
       <div className="flex-container">
         <div id="nav-group-1" className="nav-group">
-          <NavTitle />
+          {/* <NavTitle /> */}
+          {/* TEST ROUTE AWARE component */}
+          <Routes>
+            <Route path="/" element={<NavTitle />} />
+            <Route path="/books" element={<NavTitle />} />
+            <Route path="/books/:id" element={<NavTitle />} />
+            {/* <Route path="/login" element={<Login tokenId={TOKEN_ID} setTokenId={setToken} />} /> */}
+            {/* <Route path="/logout" element={<Logout tokenId={TOKEN_ID} setToken={setToken} />} /> */}
+            <Route path="/account" element={<NavTitle />} />
+            <Route path="/register" element={<NavTitle />} />
+            <Route path="/login" element={<NavTitle />} />
+            <Route path="/logout" element={<NavTitle />} />
+            <Route path="*" element={<NavTitle />} />
+          </Routes>
         </div>
         {isBrowse && (
           <div className="nav-group">
