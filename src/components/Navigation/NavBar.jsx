@@ -19,6 +19,8 @@ export default function NavBar() {
   const location = useLocation();
 
   const [isBrowse, setIsBrowse] = useState(false);
+  console.log(`browser REFRESH: ${login}` );
+  
 
   useEffect(() => {
     switch (location.pathname) {

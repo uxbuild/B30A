@@ -16,25 +16,30 @@ export default function NavLinks() {
       <NavLink className="nav-link" to="/">
         Home
       </NavLink>
+
+      {/* ACCOUNT */}
+      {isLoggedIn && (
+        <NavLink className="nav-link" to="/account">
+          Account
+        </NavLink>
+      )}
       {isLoggedIn && (
         <NavLink className="nav-link" to="/logout">
           Logout
         </NavLink>
       )}
+      {/* LOGIN */}
       {!isLoggedIn && (
         <NavLink className="nav-link" to="/login">
           Login
         </NavLink>
       )}
-      {/* <NavLink className="nav-link" to="/login">
-        Login
-      </NavLink> */}
-      <NavLink className="nav-link" to="/register">
-        Register
-      </NavLink>
-      <NavLink className="nav-link" to="/account">
-        Account
-      </NavLink>
+      {/* REGISTER */}
+      {!isLoggedIn && (
+        <NavLink className="nav-link" to="/register">
+          Register
+        </NavLink>
+      )}
     </div>
   );
 }

@@ -65,6 +65,7 @@ export default function Register() {
         // localStorage.setItem("token", data.token);
         console.log("success message: ", message);
         // navigate("/login");
+        navigate('/account?msg=Registration successful. Welcome to Book Buddy!')
       }
     } catch (error) {
       // console.log('some error', error);
@@ -76,6 +77,7 @@ export default function Register() {
   };
 
   return (
+    
     <div className="container page-container">
       {/* <h2>Register</h2> */}
 

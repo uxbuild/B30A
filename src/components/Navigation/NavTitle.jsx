@@ -13,19 +13,22 @@ export default function NavTitle() {
     console.log("NAVTITLE location", location.pathname);
     switch (location.pathname) {
       case "/books":
-        setTitle("Browse Books");
+        setTitle("Books");
         break;
       case "/":
-        setTitle("BOOK BUDDY Catalog");
+        setTitle("Catalog: Books");
         break;
       case "/login":
-        setTitle("BOOK BUDDY Login");
+        setTitle("Sign In");
+        break;
+      case "/logout":
+        setTitle("Sign Out");
         break;
       case "/account":
-        setTitle("BOOK BUDDY Account Summary");
+        setTitle("Account");
         break;
       case "/register":
-        setTitle("BOOK BUDDY Account Registration");
+        setTitle("Account Registration");
         break;
       default:
         break;
