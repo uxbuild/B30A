@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { TOKEN_ID } from "../other/token";
 
 const initialState = {
-    value: false,
+    // value: false,
+    value: localStorage.getItem(TOKEN_ID) ? true : false
 }
 
 // share state of whether there is a token

@@ -5,13 +5,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "./LoginSlice";
 import AlertMessage from "../AlertMessage/AlertMessage";
 import { useSelector, useDispatch } from "react-redux";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 // action generators
 import {
   getLogin,
   confirmLogin,
   confirmLogout,
-} from "../../store/ConfirmLoginSlice";
+} from "../../store/confirmLoginSlice";
 
 export default function Login() {
   // state vars:
@@ -49,7 +51,7 @@ export default function Login() {
         setMessage(response.data.message);
         console.log("token: ", response.data.token);
         dispatch(confirmLogin());
-        navigate("/account");
+        navigate("/account?msg=You are now signed in.");
       }
     } catch (error) {
       // console.log('some error', error);
@@ -59,8 +61,37 @@ export default function Login() {
 
   return (
     <div className="container page-container">
-      <h2>Login</h2>
-      <form onSubmit={submit}>
+      <Form className="web-form">
+        {/* FIRST NAME */}
+
+        {/*  EMAIL */}
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Email.."
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+        {/* PASSWORD */}
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="password.."
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {/* SUBMIT button */}
+        </Form.Group>
+        <Button variant="primary" type="button" onClick={submit}>
+          Submit
+        </Button>
+      </Form>
+
+      {/* <h2>Login</h2> */}
+      {/* <form onSubmit={submit}>
         <div className="form-group">
           <label>Username</label>
           <input
@@ -86,7 +117,7 @@ export default function Login() {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
-      </form>
+      </form> */}
       {message && <AlertMessage type="error" message={message} />}
     </div>
   );
