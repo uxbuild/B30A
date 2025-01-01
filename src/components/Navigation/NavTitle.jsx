@@ -1,19 +1,32 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { useLocation } from "react-router-dom";
 
-export default function NavTitle() {
+export default function NavTitle(props) {
   const location = useLocation();
   const [title, setTitle] = useState("BOOK BUDDY");
 
+  const params = useParams();
+  // console.log('nav title params', params);
+  
+  // get book id from route.
+  const { id } = useParams();
+  const {bookId} = useParams();
+
+  // console.log("book ID: ", id);
+  // console.log("book bookId: ", bookId);
+
   useEffect(() => {
-    console.log("NAVTITLE location", location.pathname);
+    // console.log("NAVTITLE location", location.pathname);
     switch (location.pathname) {
       case "/books":
         setTitle("Books");
+        break;
+      case `/books/${id}`:
+        console.log("location bookId:", location.pathname);
+        setTitle("Book Details");
         break;
       case "/":
         setTitle("Catalog: Books");
@@ -35,13 +48,9 @@ export default function NavTitle() {
     }
   }, [location.pathname]);
 
-  //   switch (location.pathname) {
-  //     case "/books":
-  //       setTitle("BOOKS");
-  //       break;
-  //     default:
-  //       setTitle("BOOK BUDDY");
-  //       break;
-  //   }
-  return <div className="nav-item"><h2>{title}</h2></div>;
+  return (
+    <div className="nav-item">
+      <h2>{title}</h2>
+    </div>
+  );
 }

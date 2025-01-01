@@ -14,7 +14,7 @@ export default function NavLinks() {
   return (
     <div className="nav-item">
       <NavLink className="nav-link" to="/">
-        Home
+        Catalog
       </NavLink>
 
       {/* ACCOUNT */}

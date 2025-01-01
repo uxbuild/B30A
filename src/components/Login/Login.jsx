@@ -49,7 +49,7 @@ export default function Login() {
         // setToken(localStorage.getItem("token"));
         // localStorage.setItem("token", response.data.token);
         setMessage(response.data.message);
-        console.log("token: ", response.data.token);
+        // console.log("token: ", response.data.token);
         dispatch(confirmLogin());
         navigate("/account?msg=You are now signed in.");
       }

@@ -2,10 +2,15 @@
 // import ReactDOM from "react-dom/client";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetBookDetailsQuery } from "./BookDetailsSlice";
+import {
+  useGetBookDetailsQuery,
+  useUpdateBookStatusMutation,
+} from "./BookDetailsSlice";
 import { Table } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useSelector, useDispatch } from "react-redux";
+import { getLogin } from "../../store/confirmLoginSlice";
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -15,47 +20,109 @@ export default function BookDetails() {
   const [bookDescription, setBookDescription] = useState("");
   const [bookCoverImage, setBookCoverImage] = useState("");
   const [bookAvailable, setBookAvailable] = useState("");
+  const login = useSelector(getLogin);
 
-  //   const [isLoaded, setIsLoaded] = useState(false);
-
+  //CHECKOUT book action from BookDetailsSlice.
+  const [updateBookStatus] = useUpdateBookStatusMutation();
+  // GET book details.
   const { data, isSuccess } = useGetBookDetailsQuery(id);
+  const {
+    data: bookDetails,
+    error,
+    isLoading,
+    refetch,
+  } = useGetBookDetailsQuery(id);
+  // Use useEffect to trigger refetch on route change
+  useEffect(() => {
+    refetch(); // Trigger refetch every time the route changes
+  }, [location, refetch]); // Dependency on location ensures refetch on route change
 
   // wait for async update..
-  useEffect(() => {
-    // console.log("useEffect A");
-    if (isSuccess) {
-      //   setIsLoaded(true);
-      console.log("useEffect data.book", data.book);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     console.log("useEffect data.book", data.book);
+  //     setBookId(data.book.id);
+  //     setBookTitle(data.book.title);
+  //     setBookAuthor(data.book.author);
+  //     setBookDescription(data.book.description);
+  //     setBookCoverImage(data.book.coverimage);
+  //     setBookAvailable(data.book.available);
+  //   }
+  // }, [data]);
 
-      setBookId(data.book.id);
-      setBookTitle(data.book.title);
-      setBookAuthor(data.book.author);
-      setBookDescription(data.book.description);
-      setBookCoverImage(data.book.coverimage);
-      setBookAvailable(data.book.available);
-      // setBookTitle(data.book.title);
-      // setBookTitle(data.book.title);
+  async function onCheckOut(e) {
+    e.preventDefault();
+    console.log("checkOut clicked");
+    try {
+      const response = await updateBookStatus({ id, available: false });
+      console.log("reserve book response", response);
+      setBookAvailable(response.data.book.available);
+    } catch (error) {
+      console.log(error);
     }
-  }, [isSuccess]);
+  }
+
+  async function onCheckIn(e) {
+    e.preventDefault();
+    console.log("check-IN clicked");
+    try {
+      const response = await updateBookStatus({ id, available: true });
+      console.log("reserve book RESPONSE.DATA.BOOK", response.data.book);
+      setBookAvailable(response.data.book.available);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  if (isLoading) {
+    return <p>Loading..</p>;
+  }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
   return (
+
+    
     <div className="container page-container">
-      <h2>Book Details</h2>
-      {/* {isSuccess ? <p>Title: {bookTitle}</p> : <p>No book info..</p>} */}
-      {isSuccess ? (
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={bookCoverImage} />
-          <Card.Body>
-            <Card.Title>{bookTitle}</Card.Title>
-            <Card.Text>
-              {bookDescription}
-            </Card.Text>
-            <Button variant="primary">Check Out/In</Button>
-          </Card.Body>
-        </Card>
-      ) : (
-        <p>No book info.</p>
-      )}
+      {console.log('BOOK DETAILS data', bookDetails)}
+      <div className="flex-container">
+        <div className="account-info-container">
+          <div className="account-info-item">
+            <span className="form-label">Title: </span>
+            {/* <span>{bookTitle}</span> */}
+            <span>{bookDetails.book.title}</span>
+          </div>
+          <div className="account-info-item">
+            <span className="form-label">Author: </span>
+            <span>{bookDetails.book.author}</span>
+          </div>
+          <p></p>
+          <div className="account-info-item">
+            <span className="form-label">Description: </span>
+            <span>{bookDetails.book.description}</span>
+          </div>
+          <div className="account-info-item">
+            <p></p>
+            <span className="form-label">Status: </span>
+            <span>{bookDetails.book.available ? "Available" : "Checked Out"}</span>
+          </div>
+          <p></p>
+          <div className="account-info-item">
+            {login && bookDetails.book.available && (
+              <Button variant="primary" onClick={onCheckOut}>
+                Reserve
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <div className="account-info-container">
+          <div className="account-info-item">
+            <img src={bookDetails.book.coverimage} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

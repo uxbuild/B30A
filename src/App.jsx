@@ -15,7 +15,6 @@ import BookDetails from "./components/BookDetails/BookDetails";
 
 function App() {
   const [token, setToken] = useState(null);
- 
 
   const TOKEN_ID = "BOOK_BUDDY_TOKEN_ID";
   // debug
@@ -27,16 +26,20 @@ function App() {
         <div>
           <Debug />
           <NavBar />
+          {/* <Route path="/*" element={<NavBar />} /> */}
+          {/* <Routes>
+            <Route path="/*" element={<NavBar />} />
+          </Routes> */}
           <Routes>
             <Route path="/" element={<BookList />} />
             <Route path="/books" element={<BookList />} />
+            <Route path="/books/:id" element={<BookDetails />} />
             {/* <Route path="/login" element={<Login tokenId={TOKEN_ID} setTokenId={setToken} />} /> */}
             {/* <Route path="/logout" element={<Logout tokenId={TOKEN_ID} setToken={setToken} />} /> */}
+            <Route path="/account" element={<Account />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/books/:id" element={<BookDetails />} />
             <Route path="*" element={<Lost />} />
           </Routes>
         </div>
