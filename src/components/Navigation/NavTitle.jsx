@@ -9,17 +9,17 @@ export default function NavTitle(props) {
   const [title, setTitle] = useState("BOOK BUDDY");
 
   const params = useParams();
-  console.log('nav title params', params);
+  // console.log('nav title params', params);
   
   // get book id from route.
   const { id } = useParams();
   const {bookId} = useParams();
 
-  console.log("book ID: ", id);
-  console.log("book bookId: ", bookId);
+  // console.log("book ID: ", id);
+  // console.log("book bookId: ", bookId);
 
   useEffect(() => {
-    console.log("NAVTITLE location", location.pathname);
+    // console.log("NAVTITLE location", location.pathname);
     switch (location.pathname) {
       case "/books":
         setTitle("Books");

@@ -39,7 +39,7 @@ export default function BookDetails() {
       setBookCoverImage(data.book.coverimage);
       setBookAvailable(data.book.available);
     }
-  }, [isSuccess, bookAvailable]);
+  }, [data]);
 
   async function onCheckOut(e) {
     e.preventDefault();
@@ -47,7 +47,7 @@ export default function BookDetails() {
     try {
       const response = await updateBookStatus({ id, available: false });
       console.log('reserve book response', response);
-      setBookAvailable(response.book.available);
+      setBookAvailable(response.data.book.available);
     } catch (error) {
       console.log(error);
     }
@@ -58,31 +58,15 @@ export default function BookDetails() {
     console.log("check-IN clicked");
     try {
       const response = await updateBookStatus({ id, available: true });
-      console.log('reserve book response', response);
-      setBookAvailable(response.book.available);
+      console.log('reserve book RESPONSE.DATA.BOOK', response.data.book);
+      setBookAvailable(response.data.book.available);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   return (
     <div className="container page-container">
-      {/* <h2>Book Details</h2> */}
-      {/* {isSuccess ? <p>Title: {bookTitle}</p> : <p>No book info..</p>} */}
-      {/* {isSuccess ? (
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={bookCoverImage} />
-          <Card.Body>
-            <Card.Title>{bookTitle}</Card.Title>
-            <Card.Text>
-              {bookDescription}
-            </Card.Text>
-            <Button variant="primary">Check Out/In</Button>
-          </Card.Body>
-        </Card>
-      ) : (
-        <p>No book info.</p>
-      )} */}
 
       <div className="flex-container">
         <div className="account-info-container">
@@ -109,11 +93,6 @@ export default function BookDetails() {
             {login && bookAvailable && (
               <Button variant="primary" onClick={onCheckOut}>
                 Reserve
-              </Button>
-            )}
-            {login && !bookAvailable && (
-              <Button variant="primary" onClick={onCheckIn}>
-                Check In
               </Button>
             )}
           </div>

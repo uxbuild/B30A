@@ -14,9 +14,21 @@ const reservationsApi = api.injectEndpoints({
       }),
       providesTags: ["reservations"],
     }),
+    deleteReservation: builder.mutation({
+        query: ({id}) => ({
+          url: `/reservations/${id}`,
+          method: "DELETE",
+          headers:{
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
+          },
+        }),
+        invalidatesTags: ["reservations"],
+      }),
+    
 
     
   }),
 });
 
-export const { useGetReservationsQuery } = reservationsApi;
+export const { useGetReservationsQuery, useDeleteReservationMutation} = reservationsApi;

@@ -19,7 +19,7 @@ export default function Books() {
   const searchKey = useSelector(getSearchKey);
 
   useEffect(() => {
-    console.log("useEffect..");
+    console.log("BOOK LIST useEFFeCT..");
 
     if (isSuccess) {
       console.log("BOOKLIST success");
@@ -30,7 +30,7 @@ export default function Books() {
       // setBooks(["hello"]);
       // console.log("updated books", books);
     }
-  }, [data, isSuccess]);
+  }, [data, searchKey]);
 
   //return boolean, used in books array filter.
   function searchBook(book, key){

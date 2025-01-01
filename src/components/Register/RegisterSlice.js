@@ -14,7 +14,7 @@ const registerApi = api.injectEndpoints({
             password,
           },
         }),
-        invalidatesTags: ["User"],
+        invalidatesTags: ["user"],
       }),
     }),
   });
