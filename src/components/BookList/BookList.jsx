@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import BookListItem from "../BookListItem/BookListItem";
 import { Table } from "react-bootstrap";
 import { getSearchKey } from "../../store/searchKeySlice";
+import { useLocation } from "react-router-dom";
 
 // API and STATE actions
 import { useSelector, useDispatch } from "react-redux";
@@ -25,28 +26,60 @@ export default function Books() {
   // console.log("BOOK LIST STORE crap", crap);
 
   const dispatch = useDispatch();
+  const location = useLocation(); // Get current location
+
   // search books: search key to filter display of books.
   const searchKey = useSelector(getSearchKey);
 
   const { data: catalog, error, isLoading, refetch } = useGetBookListQuery();
+  // Use useEffect to trigger refetch on route change
+  useEffect(() => {
+    refetch(); // Trigger refetch every time the route changes
+  }, [location, refetch]); // Dependency on location ensures refetch on route change
 
   if (isLoading) {
     return <p>Loading..</p>;
   }
-  if (error){
-    return (<p>{error.message}</p>)
+  if (error) {
+    return <p>{error.message}</p>;
   }
 
   return (
-    <div>
-      <h3>Items</h3>
-      {console.log('result', catalog)}
-      <ul>
-        {catalog.books?.map((book) => (
-          <li key={book.id}>{book.title}</li>
-        ))}
-      </ul>
-      <button onClick={refetch}>Refresh List</button>
+    <div className="container page-container">
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            // filter result based on searchKey if it is not blank.
+            catalog.books
+              .filter((book) => {
+                return (
+                  book.title.toLowerCase().search(searchKey.toLowerCase()) > -1
+                );
+              })
+              .map((item, index) => {
+                return (
+                  <BookListItem
+                    key={index}
+                    num={index}
+                    id={item.id}
+                    title={item.title}
+                    author={item.author}
+                    available={item.available}
+                    book={item}
+                  />
+                );
+              })
+          }
+        </tbody>
+      </Table>
     </div>
-  )
+  );
 }
