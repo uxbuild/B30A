@@ -33,7 +33,7 @@ export default function Register() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log("change", `${e.target.name} : ${e.target.value}`);
+    // console.log("change", `${e.target.name} : ${e.target.value}`);
   };
 
   //on form submit..
@@ -63,7 +63,7 @@ export default function Register() {
         setIsError(false);
         setMessage("Registration successful.");
         // localStorage.setItem("token", data.token);
-        console.log("success message: ", message);
+        // console.log("success message: ", message);
         // navigate("/login");
         navigate('/account?msg=Registration successful. Welcome to Book Buddy!')
       }

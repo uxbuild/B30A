@@ -1,32 +1,39 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+// import API queries.
 import {
   useGetReservationsQuery,
   useDeleteReservationMutation,
 } from "./reservationsSlice";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import reservations reducers
+import { updateReservations } from "./ReservationsSlice";
 
 export default function Reservations() {
-  // track reservations
-  const [reservations, setReservations] = useState([]);
-  //   const reservations = useSelector();
+
+    // dispatch hook to update state.
+  const dispatch = useDispatch();
+
+  // GET current reservations state.
+  const reservations = useSelector((state) => state.reservations.books);
+  console.log("STORE RESERVATIONS init", reservations);
 
   // delete reservation action
   const [deleteReservation] = useDeleteReservationMutation();
 
   // get books..
-  const { data, isSuccess } = useGetReservationsQuery();
+    const { data, isSuccess } = useGetReservationsQuery();
 
   useEffect(() => {
-    console.log("GET RESERVATIONS useEffect");
+    console.log("RESERVATIONS useEffect");
 
     if (isSuccess) {
-      console.log("get reservations success");
-      console.log("data", data);
-      setReservations([...data.reservation]);
-      console.log("state reservations", reservations);
+      console.log("RESERVATIONS success");
+      console.log("reservation data received", data?.reservation);
+      dispatch(updateReservations(data.reservation));
     }
-  }, [isSuccess]);
+  }, [data, reservations]);
 
   async function onClickDeleteReservation(id) {
     console.log("CLICK delete reservation ID", id);
@@ -41,21 +48,23 @@ export default function Reservations() {
   return (
     <>
       <p>Reservations</p>
+
       <ul>
-        {reservations.map((book) => {
-          return (
-            <p key={book.id}>
-              {book.title}, Reservation ID: {book.id} |{" "}
-              <button
-                onClick={() => {
-                  onClickDeleteReservation(book.id);
-                }}
-              >
-                Check In
-              </button>
-            </p>
-          );
-        })}
+        {reservations &&
+          reservations.map((book) => {
+            return (
+              <p key={book.id}>
+                {book.title}, Reservation ID: {book.id} |{" "}
+                <button
+                  onClick={() => {
+                    onClickDeleteReservation(book.id);
+                  }}
+                >
+                  Check In
+                </button>
+              </p>
+            );
+          })}
       </ul>
     </>
   );

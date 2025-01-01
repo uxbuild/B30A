@@ -7,11 +7,13 @@ import { useSearchParams } from "react-router-dom";
 import { getLogin } from "../../store/confirmLoginSlice";
 import { useSelector } from "react-redux";
 import Reservations from "../Reservations/Reservations";
+import { Routes, Route } from "react-router-dom";
+import Counter from "../Reservations/Counter";
 
 export default function Account() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log("query string", searchParams.get("msg"));
+  // console.log("query string", searchParams.get("msg"));
   const msg = searchParams.get("msg");
   const login = useSelector(getLogin);
 
@@ -33,8 +35,8 @@ export default function Account() {
   useEffect(() => {
     if (isSuccess) {
       // update user info.. what about STORE??
-      console.log("Account success useEffect..");
-      console.log("data", userData);
+      // console.log("Account success useEffect..");
+      // console.log("data", userData);
 
       setAccountId(userData.id);
       setFirstname(userData.firstname);
@@ -48,13 +50,6 @@ export default function Account() {
   return (
     <>
       {login && (
-        // <div className=" container page-container">
-        //   {msg && <div className="confirmation-message">{msg}</div>}
-        //   <p>Account ID: {accountId}</p>
-        //   <p>First Name: {firstname}</p>
-        //   <p>Last Name: {lastname}</p>
-        //   <p>Email: {email}</p>
-        // </div>
         <div className=" container page-container">
           {msg && <div className="confirmation-message">{msg}</div>}
 
@@ -74,7 +69,13 @@ export default function Account() {
               </div>
             </div>
             <div id="account-reservations" className="account-info-container">
+              {/* <Reservations /> */}
+
+              {/* <Routes>
+                <Route path="/account" element={<Reservations />} />
+              </Routes> */}
               <Reservations />
+              {/* <Counter /> */}
             </div>
           </div>
         </div>
@@ -84,33 +85,12 @@ export default function Account() {
           {msg && <div className="confirmation-message">{msg}</div>}
 
           <div className="flex-container">
-            {/* <div id="account-user" className="account-info-container">
-              <div className="account-info-item"> */}
-                <div className="alert-message">
-                  Please sign in to access your account.
-                </div>
-              {/* </div>
-            </div> */}
+            <div className="alert-message">
+              Please sign in to access your account.
+            </div>
           </div>
         </div>
       )}
-
-      {/* <p>hello </p> */}
     </>
   );
-  // return (
-  // {login && (<p>hello</p>)}
-  // <div className=" container page-container">
-  //   {msg && <div className="confirmation-message">{msg}</div>}
-  //   <p>Account ID: {accountId}</p>
-  //   <p>First Name: {firstname}</p>
-  //   <p>Last Name: {lastname}</p>
-  //   <p>Email: {email}</p>
-  //   <p>
-  //     {!!books.length && "You have books checked out."}
-  //     {!books.length && "No books checked out."}
-  //   </p>
-  // </div>
-  // )}
-  // );
 }

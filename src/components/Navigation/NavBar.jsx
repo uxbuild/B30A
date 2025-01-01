@@ -21,7 +21,7 @@ export default function NavBar() {
   const location = useLocation();
 
   const [isBrowse, setIsBrowse] = useState(false);
-  console.log(`browser REFRESH: ${login}`);
+  // console.log(`browser REFRESH: ${login}`);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -38,7 +38,7 @@ export default function NavBar() {
 
   function onFilter(e) {
     e.preventDefault();
-    console.log("onFilter", e.target.value);
+    // console.log("onFilter", e.target.value);
   }
 
   return (

@@ -48,14 +48,6 @@ export default function NavTitle(props) {
     }
   }, [location.pathname]);
 
-  //   switch (location.pathname) {
-  //     case "/books":
-  //       setTitle("BOOKS");
-  //       break;
-  //     default:
-  //       setTitle("BOOK BUDDY");
-  //       break;
-  //   }
   return (
     <div className="nav-item">
       <h2>{title}</h2>

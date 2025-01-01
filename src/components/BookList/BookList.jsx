@@ -2,73 +2,51 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetBookListQuery } from "./BookListSlice";
 import BookListItem from "../BookListItem/BookListItem";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import { getSearchKey } from "../../store/searchKeySlice";
+
+// API and STATE actions
+import { useSelector, useDispatch } from "react-redux";
+import { useGetBookListQuery, updateBookList } from "./BookListSlice";
 
 export default function Books() {
   // track and render books..
   const [books, setBooks] = useState([]);
-
   // get books..
-  const { data, isSuccess } = useGetBookListQuery();
 
+  // STORE access..
+  // const bookList = useSelector((state) => {
+  //   state.bookList.books;
+  // });
+  // console.log("BOOK LIST STORE book list", bookList);
+  // TESTING
+  // const crap = useSelector((state) => state.bookList.crap);
+  // console.log("BOOK LIST STORE crap", crap);
+
+  const dispatch = useDispatch();
   // search books: search key to filter display of books.
   const searchKey = useSelector(getSearchKey);
 
-  useEffect(() => {
-    console.log("BOOK LIST useEFFeCT..");
+  const { data: catalog, error, isLoading, refetch } = useGetBookListQuery();
 
-    if (isSuccess) {
-      console.log("BOOKLIST success");
-      console.log("books data", data.books);
-      // console.log("books stringified", JSON.stringify(data.books));
-      // console.log(JSON.parse(JSON.stringify(data.books)));
-      setBooks(JSON.parse(JSON.stringify(data.books)));
-      // setBooks(["hello"]);
-      // console.log("updated books", books);
-    }
-  }, [data, searchKey]);
-
-  //return boolean, used in books array filter.
-  function searchBook(book, key){
-    return book.title.toLowerCase().search(key.toLowerCase())>-1;
+  if (isLoading) {
+    return <p>Loading..</p>;
+  }
+  if (error){
+    return (<p>{error.message}</p>)
   }
 
   return (
-    <div className="container page-container">
-      {/* <h2>Books: {books.length}</h2> */}
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Available</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            // filter result based on searchKey if it is not blank.
-            books.filter((book)=>{return book.title.toLowerCase().search(searchKey.toLowerCase())>-1}).map((item, index) => {
-              return (
-                <BookListItem
-                  key={index}
-                  num={index}
-                  id={item.id}
-                  title={item.title}
-                  author={item.author}
-                  available={item.available}
-                  book={item}
-                />
-              );
-            })
-          }
-        </tbody>
-      </Table>
+    <div>
+      <h3>Items</h3>
+      {console.log('result', catalog)}
+      <ul>
+        {catalog.books?.map((book) => (
+          <li key={book.id}>{book.title}</li>
+        ))}
+      </ul>
+      <button onClick={refetch}>Refresh List</button>
     </div>
-  );
+  )
 }
