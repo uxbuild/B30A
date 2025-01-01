@@ -35,15 +35,6 @@ export default function Reservations() {
     refetch(); // Trigger refetch every time the route changes
   }, [location, refetch]); // Dependency on location ensures refetch on route change
 
-  //   useEffect(() => {
-  //     console.log("RESERVATIONS useEffect");
-
-  //     if (isSuccess) {
-  //       console.log("RESERVATIONS success");
-  //       console.log("reservation data received", data?.reservation);
-  //       dispatch(updateReservations(data.reservation));
-  //     }
-  //   }, [data, reservations]);
 
   async function onClickDeleteReservation(id) {
     console.log("CLICK delete reservation ID", id);

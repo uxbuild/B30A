@@ -22,31 +22,40 @@ export default function BookDetails() {
   const [bookAvailable, setBookAvailable] = useState("");
   const login = useSelector(getLogin);
 
-  // GET book details.
-  const { data, isSuccess } = useGetBookDetailsQuery(id);
-
   //CHECKOUT book action from BookDetailsSlice.
   const [updateBookStatus] = useUpdateBookStatusMutation();
+  // GET book details.
+  const { data, isSuccess } = useGetBookDetailsQuery(id);
+  const {
+    data: bookDetails,
+    error,
+    isLoading,
+    refetch,
+  } = useGetBookDetailsQuery(id);
+  // Use useEffect to trigger refetch on route change
+  useEffect(() => {
+    refetch(); // Trigger refetch every time the route changes
+  }, [location, refetch]); // Dependency on location ensures refetch on route change
 
   // wait for async update..
-  useEffect(() => {
-    if (isSuccess) {
-      console.log("useEffect data.book", data.book);
-      setBookId(data.book.id);
-      setBookTitle(data.book.title);
-      setBookAuthor(data.book.author);
-      setBookDescription(data.book.description);
-      setBookCoverImage(data.book.coverimage);
-      setBookAvailable(data.book.available);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     console.log("useEffect data.book", data.book);
+  //     setBookId(data.book.id);
+  //     setBookTitle(data.book.title);
+  //     setBookAuthor(data.book.author);
+  //     setBookDescription(data.book.description);
+  //     setBookCoverImage(data.book.coverimage);
+  //     setBookAvailable(data.book.available);
+  //   }
+  // }, [data]);
 
   async function onCheckOut(e) {
     e.preventDefault();
     console.log("checkOut clicked");
     try {
       const response = await updateBookStatus({ id, available: false });
-      console.log('reserve book response', response);
+      console.log("reserve book response", response);
       setBookAvailable(response.data.book.available);
     } catch (error) {
       console.log(error);
@@ -58,39 +67,49 @@ export default function BookDetails() {
     console.log("check-IN clicked");
     try {
       const response = await updateBookStatus({ id, available: true });
-      console.log('reserve book RESPONSE.DATA.BOOK', response.data.book);
+      console.log("reserve book RESPONSE.DATA.BOOK", response.data.book);
       setBookAvailable(response.data.book.available);
     } catch (error) {
       console.error(error);
     }
   }
 
-  return (
-    <div className="container page-container">
+  if (isLoading) {
+    return <p>Loading..</p>;
+  }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
+  return (
+
+    
+    <div className="container page-container">
+      {console.log('BOOK DETAILS data', bookDetails)}
       <div className="flex-container">
         <div className="account-info-container">
           <div className="account-info-item">
             <span className="form-label">Title: </span>
-            <span>{bookTitle}</span>
+            {/* <span>{bookTitle}</span> */}
+            <span>{bookDetails.book.title}</span>
           </div>
           <div className="account-info-item">
             <span className="form-label">Author: </span>
-            <span>{bookAuthor}</span>
+            <span>{bookDetails.book.author}</span>
           </div>
           <p></p>
           <div className="account-info-item">
             <span className="form-label">Description: </span>
-            <span>{bookDescription}</span>
+            <span>{bookDetails.book.description}</span>
           </div>
           <div className="account-info-item">
             <p></p>
             <span className="form-label">Status: </span>
-            <span>{bookAvailable ? "Available" : "Checked Out"}</span>
+            <span>{bookDetails.book.available ? "Available" : "Checked Out"}</span>
           </div>
           <p></p>
           <div className="account-info-item">
-            {login && bookAvailable && (
+            {login && bookDetails.book.available && (
               <Button variant="primary" onClick={onCheckOut}>
                 Reserve
               </Button>
@@ -100,7 +119,7 @@ export default function BookDetails() {
 
         <div className="account-info-container">
           <div className="account-info-item">
-            <img src={bookCoverImage} />
+            <img src={bookDetails.book.coverimage} />
           </div>
         </div>
       </div>
