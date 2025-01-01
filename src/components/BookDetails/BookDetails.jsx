@@ -2,10 +2,15 @@
 // import ReactDOM from "react-dom/client";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetBookDetailsQuery } from "./BookDetailsSlice";
+import {
+  useGetBookDetailsQuery,
+  useUpdateBookStatusMutation,
+} from "./BookDetailsSlice";
 import { Table } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useSelector, useDispatch } from "react-redux";
+import { getLogin } from "../../store/confirmLoginSlice";
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -15,28 +20,50 @@ export default function BookDetails() {
   const [bookDescription, setBookDescription] = useState("");
   const [bookCoverImage, setBookCoverImage] = useState("");
   const [bookAvailable, setBookAvailable] = useState("");
+  const login = useSelector(getLogin);
 
-  //   const [isLoaded, setIsLoaded] = useState(false);
-
+  // GET book details.
   const { data, isSuccess } = useGetBookDetailsQuery(id);
+
+  //CHECKOUT book action from BookDetailsSlice.
+  const [updateBookStatus] = useUpdateBookStatusMutation();
 
   // wait for async update..
   useEffect(() => {
-    // console.log("useEffect A");
     if (isSuccess) {
-      //   setIsLoaded(true);
       console.log("useEffect data.book", data.book);
-
       setBookId(data.book.id);
       setBookTitle(data.book.title);
       setBookAuthor(data.book.author);
       setBookDescription(data.book.description);
       setBookCoverImage(data.book.coverimage);
       setBookAvailable(data.book.available);
-      // setBookTitle(data.book.title);
-      // setBookTitle(data.book.title);
     }
-  }, [isSuccess]);
+  }, [isSuccess, bookAvailable]);
+
+  async function onCheckOut(e) {
+    e.preventDefault();
+    console.log("checkOut clicked");
+    try {
+      const response = await updateBookStatus({ id, available: false });
+      console.log('reserve book response', response);
+      setBookAvailable(response.book.available);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function onCheckIn(e) {
+    e.preventDefault();
+    console.log("check-IN clicked");
+    try {
+      const response = await updateBookStatus({ id, available: true });
+      console.log('reserve book response', response);
+      setBookAvailable(response.book.available);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="container page-container">
@@ -64,14 +91,34 @@ export default function BookDetails() {
             <span>{bookTitle}</span>
           </div>
           <div className="account-info-item">
-          <span className="form-label">Author: </span>
-          <span>{bookAuthor}</span>
+            <span className="form-label">Author: </span>
+            <span>{bookAuthor}</span>
+          </div>
+          <p></p>
+          <div className="account-info-item">
+            <span className="form-label">Description: </span>
+            <span>{bookDescription}</span>
           </div>
           <div className="account-info-item">
-          <span className="form-label">Description: </span>
-          <span>{bookDescription}</span>
+            <p></p>
+            <span className="form-label">Status: </span>
+            <span>{bookAvailable ? "Available" : "Checked Out"}</span>
+          </div>
+          <p></p>
+          <div className="account-info-item">
+            {login && bookAvailable && (
+              <Button variant="primary" onClick={onCheckOut}>
+                Reserve
+              </Button>
+            )}
+            {login && !bookAvailable && (
+              <Button variant="primary" onClick={onCheckIn}>
+                Check In
+              </Button>
+            )}
           </div>
         </div>
+
         <div className="account-info-container">
           <div className="account-info-item">
             <img src={bookCoverImage} />

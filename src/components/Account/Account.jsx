@@ -6,6 +6,7 @@ import { useGetUserAccountQuery } from "./AccountSlice";
 import { useSearchParams } from "react-router-dom";
 import { getLogin } from "../../store/confirmLoginSlice";
 import { useSelector } from "react-redux";
+import Reservations from "../Reservations/Reservations";
 
 export default function Account() {
   const navigate = useNavigate();
@@ -62,12 +63,18 @@ export default function Account() {
               <div className="account-info-item">
                 <span className="form-label">Account ID:</span> {accountId}
               </div>
-              <div className="account-info-item"><span className="form-label">First Name:</span> {firstname}</div>
-              <div className="account-info-item"><span className="form-label">Last Name:</span> {lastname}</div>
-              <div className="account-info-item"><span className="form-label">Email:</span> {email}</div>
+              <div className="account-info-item">
+                <span className="form-label">First Name:</span> {firstname}
+              </div>
+              <div className="account-info-item">
+                <span className="form-label">Last Name:</span> {lastname}
+              </div>
+              <div className="account-info-item">
+                <span className="form-label">Email:</span> {email}
+              </div>
             </div>
             <div id="account-reservations" className="account-info-container">
-              account reservations
+              <Reservations />
             </div>
           </div>
         </div>
@@ -75,21 +82,15 @@ export default function Account() {
       {!login && (
         <div className=" container page-container">
           {msg && <div className="confirmation-message">{msg}</div>}
-          <div className="alert-message">
-            Please sign in to access your account.
-          </div>
+
           <div className="flex-container">
-            <div id="account-user" className="account-info-container">
-              <div className="account-info-item">
-                <span className="">Account ID:</span> {accountId}
-              </div>
-              <div className="account-info-item">First Name: {firstname}</div>
-              <div className="account-info-item">Last Name: {lastname}</div>
-              <div className="account-info-item">Email: {email}</div>
-            </div>
-            <div id="account-reservations" className="account-info-container">
-              account reservations
-            </div>
+            {/* <div id="account-user" className="account-info-container">
+              <div className="account-info-item"> */}
+                <div className="alert-message">
+                  Please sign in to access your account.
+                </div>
+              {/* </div>
+            </div> */}
           </div>
         </div>
       )}

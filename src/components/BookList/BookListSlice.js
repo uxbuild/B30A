@@ -10,7 +10,7 @@ const booksApi = api.injectEndpoints({
           "Content-Type": "application/json",
         },
       }),
-      providesTags: ["Books"],
+      providesTags: ["books"],
     }),
   }),
 });

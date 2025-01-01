@@ -1,4 +1,5 @@
 import { api } from "../../api/api";
+import { TOKEN_ID } from "../../other/token";
 
 const bookDetailsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,9 +11,23 @@ const bookDetailsApi = api.injectEndpoints({
           "Content-Type": "application/json",
         },
       }),
-      providesTags: ["Books"],
+      providesTags: ["book"],
+    }),
+    updateBookStatus: builder.mutation({
+      query: ({id, available}) => ({
+        url: `/books/${id}`,
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
+        },
+        body: {
+          available,
+        },
+      }),
+      invalidatesTags: ["book"],
     }),
   }),
 });
 
-export const { useGetBookDetailsQuery } = bookDetailsApi;
+export const { useGetBookDetailsQuery, useUpdateBookStatusMutation } = bookDetailsApi;

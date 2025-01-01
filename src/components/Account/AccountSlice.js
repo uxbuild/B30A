@@ -12,7 +12,7 @@ const accountApi = api.injectEndpoints({
             Authorization: `Bearer ${localStorage.getItem(TOKEN_ID)}`,
         },
       }),
-      providesTags: ["Account"],
+      providesTags: ["user"],
     }),
 
     // updateUser: builder.mutation({
