@@ -1,12 +1,23 @@
-import React from 'react'
+import React from "react";
 
-export default function ReservationItem() {
+export default function ReservationItem({
+  index,
+  id,
+  title,
+  onDeleteReservation,
+}) {
+  function onHandleClick() {
+    onDeleteReservation(id);
+  }
   return (
-    <tr>
-      <td>Title:</td>
-      <td><button type="button">Check In</button></td>
+    <tr key={index}>
+      <td>{id}</td>
+      <td>{title}</td>
+      <td>
+        <button type="button" onClick={onHandleClick}>
+          Return
+        </button>
+      </td>
     </tr>
-
-    
-  )
+  );
 }

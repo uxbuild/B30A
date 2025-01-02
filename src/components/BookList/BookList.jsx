@@ -48,7 +48,7 @@ export default function Books() {
               <th>#</th>
               <th>Title</th>
               <th>Author</th>
-              <th>Available</th>
+              <th>Availability</th>
             </tr>
           </thead>
           <tbody>
