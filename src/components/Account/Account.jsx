@@ -47,8 +47,9 @@ export default function Account() {
         <div className=" container page-container">
           {msg && <div className="confirmation-message">{msg}</div>}
 
-
-            <div className="col-section"><NavTitle /></div>
+          <div className="col-section">
+            <NavTitle />
+          </div>
           <div className="flex-container">
             <div id="account-user" className="account-info-container">
               <div className="account-info-item">

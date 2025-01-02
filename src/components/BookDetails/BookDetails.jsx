@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { getLogin } from "../../store/confirmLoginSlice";
+import NavTitle from "../Navigation/NavTitle";
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -36,19 +37,6 @@ export default function BookDetails() {
   useEffect(() => {
     refetch(); // Trigger refetch every time the route changes
   }, [location, refetch]); // Dependency on location ensures refetch on route change
-
-  // wait for async update..
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     console.log("useEffect data.book", data.book);
-  //     setBookId(data.book.id);
-  //     setBookTitle(data.book.title);
-  //     setBookAuthor(data.book.author);
-  //     setBookDescription(data.book.description);
-  //     setBookCoverImage(data.book.coverimage);
-  //     setBookAvailable(data.book.available);
-  //   }
-  // }, [data]);
 
   async function onCheckOut(e) {
     e.preventDefault();
@@ -82,10 +70,11 @@ export default function BookDetails() {
   }
 
   return (
-
-    
     <div className="container page-container">
-      {console.log('BOOK DETAILS data', bookDetails)}
+      <div className="col-section">
+        <NavTitle />
+      </div>
+      {console.log("BOOK DETAILS data", bookDetails)}
       <div className="flex-container">
         <div className="account-info-container">
           <div className="account-info-item">
@@ -105,7 +94,9 @@ export default function BookDetails() {
           <div className="account-info-item">
             <p></p>
             <span className="form-label">Status: </span>
-            <span>{bookDetails.book.available ? "Available" : "Checked Out"}</span>
+            <span>
+              {bookDetails.book.available ? "Available" : "Checked Out"}
+            </span>
           </div>
           <p></p>
           <div className="account-info-item">
