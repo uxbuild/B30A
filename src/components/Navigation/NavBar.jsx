@@ -47,18 +47,17 @@ export default function NavBar() {
         <div id="nav-group-1" className="nav-group">
           {/* <NavTitle /> */}
           {/* TEST ROUTE AWARE component */}
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={<NavTitle />} />
             <Route path="/books" element={<NavTitle />} />
             <Route path="/books/:id" element={<NavTitle />} />
-            {/* <Route path="/login" element={<Login tokenId={TOKEN_ID} setTokenId={setToken} />} /> */}
-            {/* <Route path="/logout" element={<Logout tokenId={TOKEN_ID} setToken={setToken} />} /> */}
             <Route path="/account" element={<NavTitle />} />
             <Route path="/register" element={<NavTitle />} />
             <Route path="/login" element={<NavTitle />} />
             <Route path="/logout" element={<NavTitle />} />
             <Route path="*" element={<NavTitle />} />
-          </Routes>
+          </Routes> */}
+          <div className="nav-item">Welcome, GUEST</div>
         </div>
         {isBrowse && (
           <div className="nav-group">
@@ -74,49 +73,4 @@ export default function NavBar() {
       </div>
     </div>
   );
-
-  // if (login) {
-  //   // console.log("Navigation - there is a token");
-  //   // return ("You are logged in.")
-  //   return (
-  //     <div className="container">
-  //       <div className="flex-container">
-  //         <div id="nav-group-1">
-  //           <Link className="nav-item" to="/books">
-  //             Browse Books
-  //           </Link>
-  //         </div>
-  //         <div id="nav-group-2">
-  //           <Link className="nav-item" to="/account">
-  //             Account
-  //           </Link>
-  //           <Link className="nav-item" to="/logout">
-  //             Logout
-  //           </Link>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // } else {
-  //   console.log("Navigation - token not found");
-  //   // return "You are not logged in.";
-  //   return (
-  //     <div className="container nav-container">
-  //       <div className="flex-container">
-  //         <div id="nav-group-1" className="nav-group">
-  //             <NavTitle />
-  //         </div>
-
-  //         <div className="nav-group">
-  //           <div className="nav-item">
-  //             <NavSearchField />
-  //           </div>
-  //         </div>
-  //         <div id="nav-group-2" className="nav-group">
-  //          <NavLinks />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 }
