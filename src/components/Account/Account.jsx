@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Reservations from "../Reservations/Reservations";
 import { Routes, Route } from "react-router-dom";
 import Counter from "../Reservations/Counter";
+import NavTitle from "../Navigation/NavTitle";
 
 export default function Account() {
   const navigate = useNavigate();
@@ -19,9 +20,6 @@ export default function Account() {
 
   // init request response.
   const { data: userData, isSuccess } = useGetUserAccountQuery();
-  // const [user, setUser] = useState({});
-  // const [userdata, setUserData] = useState(null);
-  // const [id, setId] = useState(null);
   const [accountId, setAccountId] = useState(null);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -34,10 +32,6 @@ export default function Account() {
   // check for async response in effect
   useEffect(() => {
     if (isSuccess) {
-      // update user info.. what about STORE??
-      // console.log("Account success useEffect..");
-      // console.log("data", userData);
-
       setAccountId(userData.id);
       setFirstname(userData.firstname);
       setLastname(userData.lastname);
@@ -53,6 +47,9 @@ export default function Account() {
         <div className=" container page-container">
           {msg && <div className="confirmation-message">{msg}</div>}
 
+          <div className="col-section">
+            <NavTitle />
+          </div>
           <div className="flex-container">
             <div id="account-user" className="account-info-container">
               <div className="account-info-item">

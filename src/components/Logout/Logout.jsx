@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { TOKEN_ID } from "../../other/token";
 import { useDispatch } from "react-redux";
+import NavTitle from "../Navigation/NavTitle";
 // action generators
 import {
   getLogin,
@@ -20,7 +21,12 @@ export default function Logout() {
     // setToken(null);
     return (
       <div className="container page-container">
-        <div className="confirmation-message">You have successfully signed out.</div>
+        <div className="col-section">
+          <NavTitle />
+        </div>
+        <div className="confirmation-message">
+          You have successfully signed out.
+        </div>
       </div>
     );
     // navigate()

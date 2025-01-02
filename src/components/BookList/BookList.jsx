@@ -6,6 +6,7 @@ import BookListItem from "../BookListItem/BookListItem";
 import { Table } from "react-bootstrap";
 import { getSearchKey } from "../../store/searchKeySlice";
 import { useLocation } from "react-router-dom";
+import NavTitle from "../Navigation/NavTitle";
 
 // API and STATE actions
 import { useSelector, useDispatch } from "react-redux";
@@ -15,15 +16,6 @@ export default function Books() {
   // track and render books..
   const [books, setBooks] = useState([]);
   // get books..
-
-  // STORE access..
-  // const bookList = useSelector((state) => {
-  //   state.bookList.books;
-  // });
-  // console.log("BOOK LIST STORE book list", bookList);
-  // TESTING
-  // const crap = useSelector((state) => state.bookList.crap);
-  // console.log("BOOK LIST STORE crap", crap);
 
   const dispatch = useDispatch();
   const location = useLocation(); // Get current location
@@ -46,40 +38,46 @@ export default function Books() {
 
   return (
     <div className="container page-container">
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Available</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            // filter result based on searchKey if it is not blank.
-            catalog.books
-              .filter((book) => {
-                return (
-                  book.title.toLowerCase().search(searchKey.toLowerCase()) > -1
-                );
-              })
-              .map((item, index) => {
-                return (
-                  <BookListItem
-                    key={index}
-                    num={index}
-                    id={item.id}
-                    title={item.title}
-                    author={item.author}
-                    available={item.available}
-                    book={item}
-                  />
-                );
-              })
-          }
-        </tbody>
-      </Table>
+      <div className="col-section">
+        <NavTitle />
+      </div>
+      <div className="col-section">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Availability</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              // filter result based on searchKey if it is not blank.
+              catalog.books
+                .filter((book) => {
+                  return (
+                    book.title.toLowerCase().search(searchKey.toLowerCase()) >
+                    -1
+                  );
+                })
+                .map((item, index) => {
+                  return (
+                    <BookListItem
+                      key={index}
+                      num={index}
+                      id={item.id}
+                      title={item.title}
+                      author={item.author}
+                      available={item.available}
+                      book={item}
+                    />
+                  );
+                })
+            }
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 }

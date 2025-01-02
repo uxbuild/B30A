@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { Table } from "react-bootstrap";
 
 // import API queries.
 import {
@@ -10,6 +11,7 @@ import {
 } from "./reservationsSlice";
 // import reservations reducers
 import { updateReservations } from "./ReservationsSlice";
+import ReservationItem from "./ReservationItem";
 
 export default function Reservations() {
   // dispatch hook to update state.
@@ -35,8 +37,7 @@ export default function Reservations() {
     refetch(); // Trigger refetch every time the route changes
   }, [location, refetch]); // Dependency on location ensures refetch on route change
 
-
-  async function onClickDeleteReservation(id) {
+  async function onDeleteReservation(id) {
     console.log("CLICK delete reservation ID", id);
     try {
       const response = await deleteReservation({ id });
@@ -57,24 +58,30 @@ export default function Reservations() {
   return (
     <>
       <p>Reservations</p>
-      {console.log("RESERVATIONS data", reservations)}
-      <ul>
-        {reservations &&
-          reservations.reservation.map((book) => {
-            return (
-              <p key={book.id}>
-                {book.title}, Reservation ID: {book.id} |{" "}
-                <button
-                  onClick={() => {
-                    onClickDeleteReservation(book.id);
-                  }}
-                >
-                  Check In
-                </button>
-              </p>
-            );
-          })}
-      </ul>
+      {/* {console.log("RESERVATIONS data", reservations)} */}
+
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reservations &&
+            reservations.reservation.map((book, index) => {
+              return (
+                <ReservationItem
+                  index={index}
+                  id={book.id}
+                  title={book.title}
+                  onDeleteReservation={onDeleteReservation}
+                />
+              );
+            })}
+        </tbody>
+      </Table>
     </>
   );
 }

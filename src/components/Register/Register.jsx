@@ -7,6 +7,7 @@ import { useRegisterMutation } from "./RegisterSlice";
 import AlertMessage from "../AlertMessage/AlertMessage";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import NavTitle from "../Navigation/NavTitle";
 
 export default function Register() {
   //navigate hook
@@ -48,9 +49,14 @@ export default function Register() {
       const email = form.email;
       const password = form.password;
       const firstname = form.firstname;
-      const lastname= form.lastname;
+      const lastname = form.lastname;
 
-      const response = await registerUser({ firstname, lastname, email, password });
+      const response = await registerUser({
+        firstname,
+        lastname,
+        email,
+        password,
+      });
 
       console.log("register user response", response);
       if (response.error) {
@@ -65,7 +71,9 @@ export default function Register() {
         // localStorage.setItem("token", data.token);
         // console.log("success message: ", message);
         // navigate("/login");
-        navigate('/account?msg=Registration successful. Welcome to Book Buddy!')
+        navigate(
+          "/account?msg=Registration successful. Welcome to Book Buddy!"
+        );
       }
     } catch (error) {
       // console.log('some error', error);
@@ -77,55 +85,63 @@ export default function Register() {
   };
 
   return (
-    
     <div className="container page-container">
       {/* <h2>Register</h2> */}
-
-      <Form className="web-form">
-        {/* FIRST NAME */}
-        <Form.Group
-          className="mb-3"
-          controlId="formFirstName"
-          onSubmit={submit}
-        >
-          <Form.Label>First name:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="First name.."
-            name="firstname"
-            onChange={change}
-          />
-        </Form.Group>
-        {/* LAST NAME */}
-        <Form.Group className="mb-3" controlId="formLastName">
-          <Form.Label>Last name:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Last name.."
-            name="lastname"
-            onChange={change}
-          />
-        </Form.Group>
-        {/*  EMAIL */}
-        <Form.Group className="mb-3" controlId="formEmail">
-          <Form.Label>Email:</Form.Label>
-          <Form.Control type="email" placeholder="Email.." name="email" onChange={change} />
-        </Form.Group>
-        {/* PASSWORD */}
-        <Form.Group className="mb-3" controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="password.."
-            name="password"
-            onChange={change}
-          />
-          {/* SUBMIT button */}
-        </Form.Group>
-        <Button variant="primary" type="button" onClick={submit}>
-          Submit
-        </Button>
-      </Form>
+      <div className="col-section">
+        <NavTitle />
+      </div>
+      <div className="col-section">
+        <Form className="web-form">
+          {/* FIRST NAME */}
+          <Form.Group
+            className="mb-3"
+            controlId="formFirstName"
+            onSubmit={submit}
+          >
+            <Form.Label>First name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="First name.."
+              name="firstname"
+              onChange={change}
+            />
+          </Form.Group>
+          {/* LAST NAME */}
+          <Form.Group className="mb-3" controlId="formLastName">
+            <Form.Label>Last name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Last name.."
+              name="lastname"
+              onChange={change}
+            />
+          </Form.Group>
+          {/*  EMAIL */}
+          <Form.Group className="mb-3" controlId="formEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Email.."
+              name="email"
+              onChange={change}
+            />
+          </Form.Group>
+          {/* PASSWORD */}
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="password.."
+              name="password"
+              onChange={change}
+            />
+            {/* SUBMIT button */}
+          </Form.Group>
+          <Button variant="primary" type="button" onClick={submit}>
+            Submit
+          </Button>
+        </Form>
+      </div>
       {message && <AlertMessage type="error" message={message} />}
     </div>
   );
