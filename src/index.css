@@ -185,7 +185,7 @@ img {
 }
 .book-item-checked-out {
   /* background-color: lightsalmon !important; */
-  color: orangered !important;
+  color: darkred !important;
 }
 
 .book-item {
