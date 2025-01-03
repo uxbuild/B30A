@@ -105,13 +105,7 @@ body {
   padding: 1em;
 }
 
-.book-item-available {
-  background-color: lightgreen;
-}
-.book-item-checked-out {
-  background-color: lightsalmon !important;
-  color:darkred !important;
-}
+
 
 .web-form {
   width: 50%;
@@ -162,3 +156,46 @@ img {
   max-width: 250px;
 }
 
+.book-cover-lg {
+  max-width: 250;
+}
+
+.book-cover-sm {
+  max-width: 150px;
+}
+
+.table-cell {
+  /* width: 100%; */
+  height: inherit;
+  vertical-align: middle;
+  border-left: 10px solid black;
+}
+.books-table {
+  border-collapse: collapse;
+}
+.books-table-cell {
+  border: 1 solid black;
+  padding: 10px;
+}
+
+.book-item-available {
+  /* background-color: yellowgreen !important; */
+  color: green !important;
+  font-weight: bold;
+}
+.book-item-checked-out {
+  /* background-color: lightsalmon !important; */
+  color: orangered !important;
+}
+
+.book-item {
+  display: flex;
+  flex-direction: row;
+}
+.book-item > div {
+  display: flex;
+  flex-direction: row;
+}
+.book-item > div > i {
+  align-self: center;
+}
