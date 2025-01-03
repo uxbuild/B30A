@@ -30,54 +30,71 @@ export default function Books() {
   }, [location, refetch]); // Dependency on location ensures refetch on route change
 
   if (isLoading) {
-    return <p>Loading..</p>;
+    return (
+      <div className="container page-container">
+        <div className="col-section">Loading book list ..</div>
+      </div>
+    );
   }
   if (error) {
-    return <p>{error.message}</p>;
+    // return
+    return (
+      <div className="container page-container">
+        <div className="col-section">Error: {error}</div>
+      </div>
+    );
   }
 
-  return (
-    <div className="container page-container">
-      <div className="col-section">
-        <NavTitle />
+  const filteredCatalog = catalog.filter((book) => {
+    return (
+      // TRUE if search finds something..
+      book.title.toLowerCase().search(searchKey.toLowerCase()) > -1
+    );
+  });
+
+  if (filteredCatalog.length > 0) {
+    return (
+      <div className="container page-container">
+        <div className="col-section">
+          <NavTitle />
+        </div>
+        <div className="col-section">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Availability</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredCatalog.map((item, index) => {
+                return (
+                  <BookListItem
+                    key={index}
+                    num={index}
+                    id={item.id}
+                    title={item.title}
+                    author={item.author}
+                    available={item.available}
+                    book={item}
+                  />
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
       </div>
-      <div className="col-section">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Availability</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              // filter result based on searchKey if it is not blank.
-              catalog.books
-                .filter((book) => {
-                  return (
-                    book.title.toLowerCase().search(searchKey.toLowerCase()) >
-                    -1
-                  );
-                })
-                .map((item, index) => {
-                  return (
-                    <BookListItem
-                      key={index}
-                      num={index}
-                      id={item.id}
-                      title={item.title}
-                      author={item.author}
-                      available={item.available}
-                      book={item}
-                    />
-                  );
-                })
-            }
-          </tbody>
-        </Table>
+    );
+  } else {
+    return (
+      <div className="container page-container">
+        <div className="col-section">
+          <NavTitle />
+        </div>
+        <div className="col-section">No search results.</div>
       </div>
-    </div>
-  );
+    );
+  }
 }
