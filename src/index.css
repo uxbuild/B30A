@@ -106,7 +106,7 @@ body {
 }
 
 .page-container {
-  padding: 1em;
+  padding: 0 !important;
 }
 
 
@@ -124,9 +124,18 @@ body {
   display:flex;
   flex-direction: column;
 }
+
+.account-info-container-titlebar {
+  align-self: flex-start;
+  background-color: slateblue;
+  margin: 0;
+  width: 100%;
+  padding: .5em;
+  color: white;
+}
 .col-section {
   background-color: aliceblue;
-  margin: 1em;
+  margin-top: 1em;
   padding: 1em;
   /* flex:50%; */
   display:flex;

@@ -57,7 +57,7 @@ export default function Reservations() {
 
   return (
     <>
-      <p>Reservations</p>
+      <div className="account-info-container-titlebar">Books currently reserved:</div>
       {/* {console.log("RESERVATIONS data", reservations)} */}
 
       <Table striped bordered hover>
@@ -73,7 +73,7 @@ export default function Reservations() {
             reservations.reservation.map((book, index) => {
               return (
                 <ReservationItem
-                  index={index}
+                  key={index}
                   id={book.id}
                   title={book.title}
                   onDeleteReservation={onDeleteReservation}
