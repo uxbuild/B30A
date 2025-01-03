@@ -4,7 +4,7 @@ import loginReducer from "../components/Login/LoginSlice";
 import searchKeyReducer from "./searchKeySlice";
 import counterReducer from "../components/Reservations/CounterSlice";
 import reservationsReducer from "../components/Reservations/reservationsSlice";
-import bookListReducer from "../components/BookList/BookListSlice";
+import bookListReducer from "../components/BookList/CatalogSlice";
 
 import api from "../api/api";
 

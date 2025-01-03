@@ -96,6 +96,10 @@ body {
 
 .debug-container {
   background-color: lightsalmon;
+  background-image: url('assets/banner-2.png');
+  background-repeat: repeat-y;
+  background-repeat: repeat-x;
+  height: 100px;
   padding: 1em;
   color:black;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -124,9 +128,20 @@ body {
   background-color: aliceblue;
   margin: 1em;
   padding: 1em;
-  flex:50%;
+  /* flex:50%; */
   display:flex;
   flex-direction: column;
+}
+.col-section-catalog-menu {
+  background-color: aliceblue;
+  padding: 0 0 1em !important;
+  color:white;
+  margin: 0;
+  width:100%;
+  padding: 1em;
+  /* flex:50%; */
+  display:flex;
+  flex-direction: row;
 }
 
 .row-section {

@@ -8,9 +8,11 @@ import { getSearchKey } from "../../store/searchKeySlice";
 import { useLocation } from "react-router-dom";
 import NavTitle from "../Navigation/NavTitle";
 
+
 // API and STATE actions
 import { useSelector, useDispatch } from "react-redux";
-import { useGetBookListQuery, updateBookList } from "./BookListSlice";
+import { useGetBookListQuery, updateBookList } from "./CatalogSlice";
+import CatalogMenu from "./CatalogMenu";
 
 export default function Books() {
   // track and render books..
@@ -32,6 +34,9 @@ export default function Books() {
   if (isLoading) {
     return (
       <div className="container page-container">
+        <div className="col-section">
+          <NavTitle />
+        </div>
         <div className="col-section">Loading book list ..</div>
       </div>
     );
@@ -40,6 +45,9 @@ export default function Books() {
     // return
     return (
       <div className="container page-container">
+        <div className="col-section">
+          <NavTitle />
+        </div>
         <div className="col-section">Error: {error}</div>
       </div>
     );
@@ -58,7 +66,12 @@ export default function Books() {
         <div className="col-section">
           <NavTitle />
         </div>
+        
         <div className="col-section">
+        {/* <div className="col-section-catalog-menu">
+         <p>grid | list | search</p>
+        </div> */}
+        <CatalogMenu />
           <Table striped bordered hover>
             <thead>
               <tr>

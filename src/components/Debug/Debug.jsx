@@ -23,10 +23,9 @@ export default function Debug() {
   return (
     <>
       <div className="container debug-container">
-        <div className="flex-container">
+        {/* <div className="flex-container">
           <div id="nav-group-1">
             <div className="nav-item">Login: {login.toString()}</div>
-            {/* <div className="nav-item">Token: {token}</div> */}
           </div>
           <div id="nav-group-2">
             <div className="nav-item">Location: {location.pathname}</div>
@@ -35,7 +34,7 @@ export default function Debug() {
           <div id="nav-group-3">
             <div className="nav-item">Debug</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
