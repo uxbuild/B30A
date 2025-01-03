@@ -214,3 +214,7 @@ img {
 .book-item > div > i {
   align-self: center;
 }
+
+.ui-search {
+  padding: 0 1em;
+}

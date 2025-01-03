@@ -9,18 +9,17 @@ import { setSearchKey, getSearchKey } from "../../store/searchKeySlice";
 export default function NavSearchField() {
   const dispatch = useDispatch();
   // const searchKey = useSelector(getSearchKey);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   //clear search to reset book list view.
-  dispatch(setSearchKey(""));
+  // dispatch(setSearchKey(""));
 
   function onSearchChange(e) {
     e.preventDefault();
-    // console.log('search', e.target.value);
+    console.log("search", e.target.value);
     dispatch(setSearchKey(e.target.value));
   }
 
-  // useEffect(()=);
   return (
     <>
       <Form.Control
