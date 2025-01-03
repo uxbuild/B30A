@@ -22,7 +22,7 @@ export default function ReservationItem({
       <td>
         {/* <button type="button" onClick={onHandleClick}> */}
         <Button variant="contained" onClick={onHandleClick}>
-          Return
+          Return Item
         </Button>
         {/* Return */}
         {/* </button> */}
