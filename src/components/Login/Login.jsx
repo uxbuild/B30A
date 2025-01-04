@@ -66,34 +66,35 @@ export default function Login() {
         <NavTitle />
       </div>
       <div className="col-section">
-        <Form className="web-form">
-          {/* FIRST NAME */}
-
-          {/*  EMAIL */}
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Email.."
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          {/* PASSWORD */}
-          <Form.Group className="mb-3" controlId="formPassword">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="password.."
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {/* SUBMIT button */}
-          </Form.Group>
-          <Button variant="primary" type="button" onClick={submit}>
-            Submit
-          </Button>
-        </Form>
+        {isLoggedIn ? (
+          <p>You are already logged in.</p>
+        ) : (
+          <Form className="web-form">
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Email.."
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            {/* PASSWORD */}
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="password.."
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {/* SUBMIT button */}
+            </Form.Group>
+            <Button variant="primary" type="button" onClick={submit}>
+              Submit
+            </Button>
+          </Form>
+        )}
       </div>
 
       {/* <h2>Login</h2> */}
