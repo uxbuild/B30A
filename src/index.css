@@ -144,7 +144,7 @@ body {
 .col-section-catalog-menu {
   background-color: aliceblue;
   padding: 0 0 1em !important;
-  color:white;
+  /* color:white; */
   margin: 0;
   width:100%;
   padding: 1em;
@@ -176,6 +176,7 @@ body {
   font-weight: bold;
 }
 
+/* FIX - use class for Book Details section */
 img {
   max-width: 250px;
 }

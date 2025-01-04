@@ -1,41 +1,55 @@
-import React, { useState } from "react";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
-import LaptopIcon from "@mui/icons-material/Laptop";
-import TvIcon from "@mui/icons-material/Tv";
-import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import NavSearchField from "../Navigation/NavSearchField";
+import { useDispatch } from "react-redux";
+import { setSearchKey } from "../../store/searchKeySlice";
+// import 
 
-export default function CatalogMenu({ setCatalogViewModeToList, setCatalogViewModeToGrid }) {
+export default function CatalogMenu({
+  setCatalogViewModeToList,
+  setCatalogViewModeToGrid,
+}) {
+
+  // to clear search..
+  const dispatch = useDispatch();
+
   const [view, setView] = useState("list");
-  function handleAlignment() {}
+  // function handleAlignment() {}
+
+  function onClearSearch(e) {
+    e.preventDefault();
+    console.log("CATALOG MENU clear search click");
+    dispatch(setSearchKey(""));
+  }
+
   return (
     <div className="col-section-catalog-menu">
       <Stack direction="row" spacing={4}>
         <ToggleButtonGroup
           value={view}
           exclusive
-          onChange={handleAlignment}
+          // onChange={handleAlignment}
           aria-label="text alignment"
         >
           <ToggleButton value="left" aria-label="left aligned">
-            {/* <FormatAlignLeftIcon /> */}
             <GridViewOutlinedIcon onClick={setCatalogViewModeToGrid} />
           </ToggleButton>
           <ToggleButton value="center" aria-label="centered">
-            {/* <FormatAlignCenterIcon /> */}
             <ListOutlinedIcon onClick={setCatalogViewModeToList} />
           </ToggleButton>
         </ToggleButtonGroup>
       </Stack>
       <div className="ui-search">
         <NavSearchField />
+      </div>
+      <div className="nav-item">
+        <a href="#" onClick={onClearSearch}>
+          Clear search
+        </a>
       </div>
     </div>
   );

@@ -5,10 +5,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchKey, getSearchKey } from "../../store/searchKeySlice";
+import { Divider } from "@mui/material";
 
 export default function NavSearchField() {
   const dispatch = useDispatch();
-  // const searchKey = useSelector(getSearchKey);
+  const searchKey = useSelector(getSearchKey);
   // const [search, setSearch] = useState("");
 
   //clear search to reset book list view.
@@ -27,6 +28,7 @@ export default function NavSearchField() {
         id="inputPassword5"
         aria-describedby="passwordHelpBlock"
         onChange={onSearchChange}
+        value={searchKey}
       />
       <Form.Text id="passwordHelpBlock" muted>
         Keyword search..
