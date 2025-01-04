@@ -7,7 +7,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
-import BookList from "./components/BookList/BookList";
+import BookList from "./components/BookList/Catalog";
 import NavBar from "./components/Navigation/Navbar";
 import Debug from "./components/Debug/Debug";
 import Lost from "./components/Lost";

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function BookListItem({
+export default function CatalogListViewItem({
   num,
   id,
   title,

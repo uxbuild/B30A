@@ -57,31 +57,35 @@ export default function Reservations() {
 
   return (
     <>
-      <p>Reservations</p>
+      <div className="account-info-container-titlebar">Books reservations:</div>
       {/* {console.log("RESERVATIONS data", reservations)} */}
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reservations &&
-            reservations.reservation.map((book, index) => {
-              return (
-                <ReservationItem
-                  index={index}
-                  id={book.id}
-                  title={book.title}
-                  onDeleteReservation={onDeleteReservation}
-                />
-              );
-            })}
-        </tbody>
-      </Table>
+      {reservations.reservation.length > 0 ? (
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reservations &&
+              reservations.reservation.map((book, index) => {
+                return (
+                  <ReservationItem
+                    key={index}
+                    id={book.id}
+                    title={book.title}
+                    onDeleteReservation={onDeleteReservation}
+                  />
+                );
+              })}
+          </tbody>
+        </Table>
+      ) : (
+        // no reservations to display
+        <p className="empty-list-msg">No books checked out at this time.</p>
+      )}
     </>
   );
 }

@@ -61,9 +61,9 @@ export default function NavBar() {
         </div>
         {isBrowse && (
           <div className="nav-group">
-            <div className="nav-item">
+            {/* <div className="nav-item">
               <NavSearchField />
-            </div>
+            </div> */}
           </div>
         )}
 

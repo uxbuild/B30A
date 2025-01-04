@@ -12,7 +12,7 @@ export const searchKeySlice = createSlice({
     },
     reducers: {
         setSearchKey: (state, action)=>{
-            // console.log('dispatch setSearch');          
+            console.log('dispatch setSearch');          
             state.value = action.payload;
         },
     }

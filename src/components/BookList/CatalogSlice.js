@@ -11,6 +11,8 @@ const booksApi = api.injectEndpoints({
           "Content-Type": "application/json",
         },
       }),
+      transformResponse:(result)=>{return result.books},
+      transformError: (result)=>result.error.message,
       providesTags: ["books"],
     }),
   }),
