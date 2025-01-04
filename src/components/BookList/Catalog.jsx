@@ -8,6 +8,7 @@ import { Table } from "react-bootstrap";
 import { getSearchKey } from "../../store/searchKeySlice";
 import { useLocation } from "react-router-dom";
 import NavTitle from "../Navigation/NavTitle";
+import CatalogGridViewItem from "../BookListItem/CatalogGridViewItem";
 
 // API and STATE actions
 import { useSelector, useDispatch } from "react-redux";
@@ -96,9 +97,6 @@ export default function Books() {
     });
 
     if (filteredCatalog.length > 0) {
-      // if(viewMode===LIST_VIEW){
-
-      // }
       return (
         <div className="container page-container">
           <div className="col-section">
@@ -106,9 +104,6 @@ export default function Books() {
           </div>
 
           <div className="col-section">
-            {/* <div className="col-section-catalog-menu">
-           <p>grid | list | search</p>
-          </div> */}
             <CatalogMenu
               setCatalogViewModeToGrid={setCatalogViewModeToGrid}
               setCatalogViewModeToList={setCatalogViewModeToList}
@@ -141,7 +136,38 @@ export default function Books() {
                 </tbody>
               </Table>
             )}
-            {viewModes.grid && <p>GRID VIEW!</p>}
+            {viewModes.grid &&
+              // filteredCatalog.map((item, index) => {
+              //   return (
+              //     // <BookListItem
+              //     <CatalogGridViewItem
+              //       key={index}
+              //       num={index}
+              //       id={item.id}
+              //       title={item.title}
+              //       author={item.author}
+              //       available={item.available}
+              //       book={item}
+              //     />
+              //   );
+              // })}
+              <div className="grid-view-container">{
+                filteredCatalog.map((item, index) => {
+                return (
+                  // <BookListItem
+                  <CatalogGridViewItem
+                    key={index}
+                    num={index}
+                    id={item.id}
+                    title={item.title}
+                    author={item.author}
+                    available={item.available}
+                    book={item}
+                  />
+                );
+              })}
+              }</div>
+            }
           </div>
         </div>
       );

@@ -227,3 +227,9 @@ img {
 .ui-search {
   padding: 0 1em;
 }
+
+.grid-view-container {
+  display:flex;
+  flex-direction: row;
+  
+}
