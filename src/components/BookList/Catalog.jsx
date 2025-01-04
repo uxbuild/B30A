@@ -151,7 +151,8 @@ export default function Books() {
               //     />
               //   );
               // })}
-              <div className="grid-view-container">{
+              // <div className="grid-view-container">{
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>{
                 filteredCatalog.map((item, index) => {
                 return (
                   // <BookListItem

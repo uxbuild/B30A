@@ -233,3 +233,6 @@ img {
   flex-direction: row;
   
 }
+.grid-view-item {
+  maring: .5em;
+}
