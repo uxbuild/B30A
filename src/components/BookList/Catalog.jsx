@@ -16,22 +16,18 @@ import { useGetBookListQuery, updateBookList } from "./CatalogSlice";
 import CatalogMenu from "./CatalogMenu";
 
 export default function Books() {
+  const location = useLocation();
+
   // track and render books..
   const [books, setBooks] = useState([]);
-  // get books..
 
-  // const dispatch = useDispatch();
-  const location = useLocation(); // Get current location
-
-  // track state to refresh..
-  // const [keyword, setKeyword] = useState(useSelector(getSearchKey));
+  // search key: STORE state to refresh..
   const keyword = useSelector(getSearchKey);
-  // search books: search key to filter display of books.
-  // const searchKey = useSelector(getSearchKey);
-  // setKeyword(searchKey);
 
+  // search books: search key to filter display of books.
   const [viewModes, setViewModes] = useState({ list: true, grid: false });
 
+  // toggle view modes..
   const switchViewMode = (mode) => {
     setViewModes((prevState) => ({
       list: mode === "list" ? true : false,
@@ -40,11 +36,11 @@ export default function Books() {
   };
 
   function setCatalogViewModeToList() {
-    console.log("CATALOG MENU view mode to LIST");
+    // console.log("CATALOG MENU view mode to LIST");
     switchViewMode("list");
   }
   function setCatalogViewModeToGrid() {
-    console.log("CATALOG MENU view mode to GRID");
+    // console.log("CATALOG MENU view mode to GRID");
     switchViewMode("grid");
   }
 
@@ -58,7 +54,6 @@ export default function Books() {
 
   // Use useEffect to trigger refetch on route change
   useEffect(() => {
-    console.log("CATALOG MENU use effect");
     refetch(); // Trigger refetch every time the route changes
   }, [location, refetch]); // Dependency on location ensures refetch on route change
 
@@ -86,16 +81,15 @@ export default function Books() {
       </div>
     );
   }
-
+  // IF LOADED..
   if (isSuccess) {
     const filteredCatalog = catalog.filter((book) => {
       return (
         // TRUE if search finds something..
-        // book.title.toLowerCase().search(searchKey.toLowerCase()) > -1
         book.title.toLowerCase().search(keyword.toLowerCase()) > -1
       );
     });
-
+    // if list not empty..
     if (filteredCatalog.length > 0) {
       return (
         <div className="container page-container">
@@ -136,39 +130,24 @@ export default function Books() {
                 </tbody>
               </Table>
             )}
-            {viewModes.grid &&
-              // filteredCatalog.map((item, index) => {
-              //   return (
-              //     // <BookListItem
-              //     <CatalogGridViewItem
-              //       key={index}
-              //       num={index}
-              //       id={item.id}
-              //       title={item.title}
-              //       author={item.author}
-              //       available={item.available}
-              //       book={item}
-              //     />
-              //   );
-              // })}
-              // <div className="grid-view-container">{
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>{
-                filteredCatalog.map((item, index) => {
-                return (
-                  // <BookListItem
-                  <CatalogGridViewItem
-                    key={index}
-                    num={index}
-                    id={item.id}
-                    title={item.title}
-                    author={item.author}
-                    available={item.available}
-                    book={item}
-                  />
-                );
-              })}
-              }</div>
-            }
+            {viewModes.grid && (
+              <div className="grid-view-container">
+                {filteredCatalog.map((item, index) => {
+                  return (
+                    <CatalogGridViewItem
+                      key={index}
+                      num={index}
+                      id={item.id}
+                      title={item.title}
+                      author={item.author}
+                      available={item.available}
+                      book={item}
+                      image={item.coverimage}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       );

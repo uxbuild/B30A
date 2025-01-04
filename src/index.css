@@ -229,10 +229,13 @@ img {
 }
 
 .grid-view-container {
-  display:flex;
-  flex-direction: row;
+  display:flex !important;
+  flex-wrap: wrap;
+  gap: 16px !important;
+  /* flex-direction: row; */
+  /* {{ display: 'flex', flexWrap: 'wrap', gap: '16px' }} */
   
 }
-.grid-view-item {
-  maring: .5em;
+.grid-view-item-container {
+  margin: .5em !important;
 }

@@ -57,7 +57,7 @@ export default function Reservations() {
 
   return (
     <>
-      <div className="account-info-container-titlebar">Books currently reserved:</div>
+      <div className="account-info-container-titlebar">Books checked out:</div>
       {/* {console.log("RESERVATIONS data", reservations)} */}
 
       <Table striped bordered hover>
