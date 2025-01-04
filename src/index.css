@@ -240,3 +240,7 @@ img {
 .grid-view-item-container {
   margin: .5em !important;
 }
+
+.empty-list-msg {
+  padding: .5em;
+}
