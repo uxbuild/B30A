@@ -30,10 +30,9 @@ export default function CatalogGridViewItem({
           image="https://via.placeholder.com/150" // Replace with your image URL
         />
         <CardContent>
-          <Typography variant="h6">Card Title</Typography>
+          <Typography variant="body1">Title: {title}</Typography>
           <Typography variant="body2" color="text.secondary">
-            This is some content inside the card. You can add any information
-            here.
+            {author}
           </Typography>
         </CardContent>
         <CardActions>
