@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BookListItem from "../BookListItem/BookListItem";
+import CatalogListViewItem from "../BookListItem/CatalogListViewItem";
 import { Table } from "react-bootstrap";
 import { getSearchKey } from "../../store/searchKeySlice";
 import { useLocation } from "react-router-dom";
@@ -28,7 +29,23 @@ export default function Books() {
   // const searchKey = useSelector(getSearchKey);
   // setKeyword(searchKey);
 
-  
+  const [viewModes, setViewModes] = useState({ list: true, grid: false });
+
+  const switchViewMode = (mode) => {
+    setViewModes((prevState) => ({
+      list: mode === "list" ? true : false,
+      grid: mode === "grid" ? true : false,
+    }));
+  };
+
+  function setCatalogViewModeToList() {
+    console.log("CATALOG MENU view mode to LIST");
+    switchViewMode("list");
+  }
+  function setCatalogViewModeToGrid() {
+    console.log("CATALOG MENU view mode to GRID");
+    switchViewMode("grid");
+  }
 
   const {
     data: catalog,
@@ -79,6 +96,9 @@ export default function Books() {
     });
 
     if (filteredCatalog.length > 0) {
+      // if(viewMode===LIST_VIEW){
+
+      // }
       return (
         <div className="container page-container">
           <div className="col-section">
@@ -89,32 +109,39 @@ export default function Books() {
             {/* <div className="col-section-catalog-menu">
            <p>grid | list | search</p>
           </div> */}
-            <CatalogMenu />
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Availability</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredCatalog.map((item, index) => {
-                  return (
-                    <BookListItem
-                      key={index}
-                      num={index}
-                      id={item.id}
-                      title={item.title}
-                      author={item.author}
-                      available={item.available}
-                      book={item}
-                    />
-                  );
-                })}
-              </tbody>
-            </Table>
+            <CatalogMenu
+              setCatalogViewModeToGrid={setCatalogViewModeToGrid}
+              setCatalogViewModeToList={setCatalogViewModeToList}
+            />
+            {viewModes.list && (
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Availability</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredCatalog.map((item, index) => {
+                    return (
+                      // <BookListItem
+                      <CatalogListViewItem
+                        key={index}
+                        num={index}
+                        id={item.id}
+                        title={item.title}
+                        author={item.author}
+                        available={item.available}
+                        book={item}
+                      />
+                    );
+                  })}
+                </tbody>
+              </Table>
+            )}
+            {viewModes.grid && <p>GRID VIEW!</p>}
           </div>
         </div>
       );

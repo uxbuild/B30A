@@ -12,7 +12,7 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import NavSearchField from "../Navigation/NavSearchField";
 
-export default function CatalogMenu() {
+export default function CatalogMenu({ setCatalogViewModeToList, setCatalogViewModeToGrid }) {
   const [view, setView] = useState("list");
   function handleAlignment() {}
   return (
@@ -26,11 +26,11 @@ export default function CatalogMenu() {
         >
           <ToggleButton value="left" aria-label="left aligned">
             {/* <FormatAlignLeftIcon /> */}
-            <GridViewOutlinedIcon />
+            <GridViewOutlinedIcon onClick={setCatalogViewModeToGrid} />
           </ToggleButton>
           <ToggleButton value="center" aria-label="centered">
             {/* <FormatAlignCenterIcon /> */}
-            <ListOutlinedIcon />
+            <ListOutlinedIcon onClick={setCatalogViewModeToList} />
           </ToggleButton>
         </ToggleButtonGroup>
       </Stack>
