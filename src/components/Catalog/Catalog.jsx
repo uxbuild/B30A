@@ -12,10 +12,11 @@ import CatalogGridViewItem from "../BookListItem/CatalogGridViewItem";
 
 // API and STATE actions
 import { useSelector, useDispatch } from "react-redux";
-import { useGetBookListQuery, updateBookList } from "./CatalogSlice";
+import { useGetCatalogQuery, updateCatalog } from "./CatalogSlice";
 import CatalogMenu from "./CatalogMenu";
 
-export default function Books() {
+// export default function Books() {
+export default function Catalog() {
   const location = useLocation();
 
   // track and render books..
@@ -50,7 +51,7 @@ export default function Books() {
     isLoading,
     isSuccess,
     refetch,
-  } = useGetBookListQuery();
+  } = useGetCatalogQuery();
 
   // Use useEffect to trigger refetch on route change
   useEffect(() => {
@@ -64,7 +65,7 @@ export default function Books() {
         <div className="col-section">
           <NavTitle />
         </div>
-        <div className="col-section">Loading book list ..</div>
+        <div className="col-section">Loading catalog ..</div>
       </div>
     );
   }

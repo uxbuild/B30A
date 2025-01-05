@@ -4,7 +4,7 @@ import loginReducer from "../components/Login/LoginSlice";
 import searchKeyReducer from "./searchKeySlice";
 import counterReducer from "../components/Reservations/CounterSlice";
 import reservationsReducer from "../components/Reservations/reservationsSlice";
-import bookListReducer from "../components/BookList/CatalogSlice";
+import catalogReducer from "../components/Catalog/CatalogSlice";
 import registerReducer from "../components/Register/RegisterSlice";
 import loginNameReducer from "./LoginNameSlice";
 
@@ -18,7 +18,7 @@ const store = configureStore({
     searchKey: searchKeyReducer,
     counter: counterReducer,
     reservations: reservationsReducer,
-    bookList: bookListReducer,
+    catalog: catalogReducer,
     register: registerReducer,
     loginName: loginNameReducer,
   },

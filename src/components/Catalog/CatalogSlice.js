@@ -1,9 +1,9 @@
 import { api } from "../../api/api";
 import { createSlice } from "@reduxjs/toolkit";
 
-const booksApi = api.injectEndpoints({
+const catalogApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getBookList: builder.query({
+    getCatalog: builder.query({
       query: () => ({
         url: "/books",
         method: "GET",
@@ -19,21 +19,20 @@ const booksApi = api.injectEndpoints({
 });
 
 const initialState = {
-  books: [],
-  crap: "poop",
+  catalog: [],
 };
 
-export const bookListSlice = createSlice({
-  name: "bookList",
+export const catalogSlice = createSlice({
+  name: "catalog",
   initialState,
   reducers: {
-    updateBookList: (state, action) => {
-      state.books = action.payload;
+    updateCatalog: (state, action) => {
+      state.catalog = action.payload;
     },
   },
 });
-export const { useGetBookListQuery } = booksApi;
+export const { useGetCatalogQuery } = catalogApi;
 // Action creators are generated for each reducer function.
-export const { updateBookList } = bookListSlice.actions;
+export const { updateCatalog } = catalogSlice.actions;
 // export reducer
-export default bookListSlice.reducer;
+export default catalogSlice.reducer;
