@@ -1,18 +1,15 @@
-import React from "react";
+
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+import { useParams, useLocation } from "react-router-dom";
 
 export default function NavTitle(props) {
   const location = useLocation();
   const [title, setTitle] = useState("BOOK BUDDY");
 
-  const params = useParams();
+
 
   // get book id from route.
   const { id } = useParams();
-  const { bookId } = useParams();
 
   useEffect(() => {
     switch (location.pathname) {
