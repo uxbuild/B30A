@@ -1,7 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 
 // import API queries.
@@ -9,23 +6,13 @@ import {
   useGetReservationsQuery,
   useDeleteReservationMutation,
 } from "./reservationsSlice";
-// import reservations reducers
-import { updateReservations } from "./ReservationsSlice";
+
 import ReservationItem from "./ReservationItem";
 
 export default function Reservations() {
-  // dispatch hook to update state.
-  const dispatch = useDispatch();
-
-  // GET current reservations state.
-  //   const reservations = useSelector((state) => state.reservations.books);
-  //   console.log("STORE RESERVATIONS init", reservations);
-
   // ACTION delete reservation
   const [deleteReservation] = useDeleteReservationMutation();
 
-  // GET books..
-  //   const { data, isSuccess } = useGetReservationsQuery();
   const {
     data: reservations,
     error,
@@ -41,10 +28,10 @@ export default function Reservations() {
     console.log("CLICK delete reservation ID", id);
     try {
       const response = await deleteReservation({ id });
-      console.log("DELETE RESERVATION response", response);
-      //   refetch();
+      // NEED MESSAGING ON FAILURE OF THIS API CALL..
     } catch (error) {
       console.log("DELETE RESERVATION error", error);
+      // NEED MESSAGING ON FAILURE OF THIS TRY-CATCH..
     }
   }
 
@@ -58,7 +45,7 @@ export default function Reservations() {
   return (
     <>
       <div className="account-info-container-titlebar">Books reservations:</div>
-      {/* {console.log("RESERVATIONS data", reservations)} */}
+
       {reservations.reservation.length > 0 ? (
         <Table striped bordered hover>
           <thead>
