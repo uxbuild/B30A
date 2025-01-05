@@ -1,25 +1,21 @@
-/* TODO - add your code to create a functional React component that displays all of the available books in the library's catalog. Fetch the book data from the provided API. Users should be able to click on an individual book to navigate to the SingleBook component and view its details. */
-import React, { useMemo } from "react";
+//
+// imports..
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import BookListItem from "../BookListItem/BookListItem";
-import CatalogListViewItem from "../BookListItem/CatalogListViewItem";
-import { Table } from "react-bootstrap";
-import { getSearchKey } from "../../store/searchKeySlice";
 import { useLocation } from "react-router-dom";
+import { getSearchKey } from "../../store/searchKeySlice";
+import { Table } from "react-bootstrap";
 import NavTitle from "../Navigation/NavTitle";
-import CatalogGridViewItem from "../BookListItem/CatalogGridViewItem";
+import CatalogListViewItem from "../CatalogItem/CatalogListViewItem";
+import CatalogGridViewItem from "../CatalogItem/CatalogGridViewItem";
 
 // API and STATE actions
-import { useSelector, useDispatch } from "react-redux";
-import { useGetBookListQuery, updateBookList } from "./CatalogSlice";
+import { useSelector } from "react-redux";
+import { useGetCatalogQuery } from "./CatalogSlice";
 import CatalogMenu from "./CatalogMenu";
 
-export default function Books() {
+// export default function Books() {
+export default function Catalog() {
   const location = useLocation();
-
-  // track and render books..
-  const [books, setBooks] = useState([]);
 
   // search key: STORE state to refresh..
   const keyword = useSelector(getSearchKey);
@@ -36,11 +32,9 @@ export default function Books() {
   };
 
   function setCatalogViewModeToList() {
-    // console.log("CATALOG MENU view mode to LIST");
     switchViewMode("list");
   }
   function setCatalogViewModeToGrid() {
-    // console.log("CATALOG MENU view mode to GRID");
     switchViewMode("grid");
   }
 
@@ -50,7 +44,7 @@ export default function Books() {
     isLoading,
     isSuccess,
     refetch,
-  } = useGetBookListQuery();
+  } = useGetCatalogQuery();
 
   // Use useEffect to trigger refetch on route change
   useEffect(() => {
@@ -64,7 +58,7 @@ export default function Books() {
         <div className="col-section">
           <NavTitle />
         </div>
-        <div className="col-section">Loading book list ..</div>
+        <div className="col-section">Loading catalog ..</div>
       </div>
     );
   }
@@ -115,14 +109,9 @@ export default function Books() {
                 <tbody>
                   {filteredCatalog.map((item, index) => {
                     return (
-                      // <BookListItem
                       <CatalogListViewItem
                         key={index}
                         num={index}
-                        id={item.id}
-                        title={item.title}
-                        author={item.author}
-                        available={item.available}
                         book={item}
                       />
                     );

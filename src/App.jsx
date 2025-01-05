@@ -7,19 +7,13 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
-import BookList from "./components/BookList/Catalog";
+import Catalog from "./components/Catalog/Catalog";
 import NavBar from "./components/Navigation/Navbar";
 import Debug from "./components/Debug/Debug";
 import Lost from "./components/Lost";
 import BookDetails from "./components/BookDetails/BookDetails";
 
 function App() {
-  const [token, setToken] = useState(null);
-
-  const TOKEN_ID = "BOOK_BUDDY_TOKEN_ID";
-  // debug
-  const [watch, setWatch] = useState(0);
-
   return (
     <>
       <Router>
@@ -27,8 +21,8 @@ function App() {
           <Debug />
           <NavBar />
           <Routes>
-            <Route path="/" element={<BookList />} />
-            <Route path="/books" element={<BookList />} />
+            <Route path="/" element={<Catalog />} />
+            <Route path="/books" element={<Catalog />} />
             <Route path="/books/:id" element={<BookDetails />} />
             <Route path="/account" element={<Account />} />
             <Route path="/register" element={<Register />} />

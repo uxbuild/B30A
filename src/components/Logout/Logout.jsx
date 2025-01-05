@@ -1,30 +1,21 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TOKEN_ID } from "../../other/token";
 import { useDispatch } from "react-redux";
 import NavTitle from "../Navigation/NavTitle";
 import { setLoginName } from "../../store/LoginNameSlice";
 
 // action generators
-import {
-  getLogin,
-  confirmLogin,
-  confirmLogout,
-} from "../../store/confirmLoginSlice";
+import { confirmLogout } from "../../store/confirmLoginSlice";
 
 export default function Logout() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   console.log("LOGOUT ..");
 
   try {
-    
     localStorage.removeItem(TOKEN_ID);
     dispatch(confirmLogout());
-    dispatch(setLoginName("GUEST"));
+    dispatch(setLoginName("GUEST")); // better way to handle this..
 
-    console.log("LOGOUT local storage: ", localStorage);
-
-    // setToken(null);
     return (
       <div className="container page-container">
         <div className="col-section">
@@ -35,7 +26,6 @@ export default function Logout() {
         </div>
       </div>
     );
-    // navigate()
   } catch (error) {
     return (
       <div className="page-container">

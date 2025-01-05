@@ -1,5 +1,3 @@
-/* TODO - add your code to create a functional React component that renders account details for a logged in user. Fetch the account data from the provided API. You may consider conditionally rendering a message for other users that prompts them to log in or create an account.  */
-// import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetUserAccountQuery } from "./AccountSlice";
@@ -7,21 +5,15 @@ import { useSearchParams } from "react-router-dom";
 import { getLogin } from "../../store/confirmLoginSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Reservations from "../Reservations/Reservations";
-import { Routes, Route } from "react-router-dom";
-import Counter from "../Reservations/Counter";
 import NavTitle from "../Navigation/NavTitle";
-import { useLocation } from "react-router-dom";
 import { setLoginName } from "../../store/LoginNameSlice";
 
 export default function Account() {
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const msg = searchParams.get("msg");
-
-  // STORE user logged in?
   const login = useSelector(getLogin);
 
   // init request response.
@@ -36,28 +28,24 @@ export default function Account() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  // const [books, setBooks] = useState([]);
 
   // check for async response in effect
   useEffect(() => {
-    console.log('ACCOUNT use effect');
-    console.log('ACCOUNT login state', login);
-    
+
     if (isSuccess) {
-      console.log('ACCOUNT use effect - success account query');
-      
+      console.log("ACCOUNT use effect - success account query");
+
       setAccountId(userData.id);
       setFirstname(userData.firstname);
       setLastname(userData.lastname);
       setEmail(userData.email);
-      // setBooks([...userData.books]);
-      dispatch(setLoginName(`${userData.firstname} ${userData.lastname}`))
+      dispatch(setLoginName(`${userData.firstname} ${userData.lastname}`));
     }
   }, [isSuccess, login]);
 
   return (
     <>
-    {/* IF LOGGED IN.. */}
+      {/* IF LOGGED IN.. */}
       {login && (
         <div className=" container page-container">
           {msg && <div className="confirmation-message">{msg}</div>}

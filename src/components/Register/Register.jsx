@@ -6,8 +6,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavTitle from "../Navigation/NavTitle";
 import { useDispatch, useSelector } from "react-redux";
-import { confirmLogin, confirmLogout, getLogin } from "../../store/confirmLoginSlice";
-
+import {
+  confirmLogin,
+  confirmLogout,
+  getLogin,
+} from "../../store/confirmLoginSlice";
 
 export default function Register() {
   // navigate
@@ -27,7 +30,6 @@ export default function Register() {
 
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
   const login = useSelector(getLogin);
@@ -46,7 +48,6 @@ export default function Register() {
     setIsError(false);
     setIsSuccess(false);
     setMessage(null);
-    // console.log("submit form", form);
 
     try {
       const email = form.email;
@@ -67,33 +68,25 @@ export default function Register() {
         setIsSuccess(false);
         setIsError(true);
         setMessage(response.error.data.message);
-        console.log("error message: ", message);
       } else {
         setIsSuccess(true);
         setIsError(false);
-        
+
         // set login state.
         dispatch(confirmLogin());
-        console.log('REGISTER login state: ', login);
-        
         setMessage("Registration successful.");
-
         navigate(
           "/account?msg=Registration successful. Welcome to Book Buddy!"
         );
       }
     } catch (error) {
-      console.log('some error', error);
-      console.error(error.data.message);
       setMessage(error.data.message);
       setIsError(true);
-      console.log("try-catch error message: ", message);
     }
   };
 
   return (
     <div className="container page-container">
-      {/* <h2>Register</h2> */}
       <div className="col-section">
         <NavTitle />
       </div>

@@ -36,7 +36,6 @@ export const reservationsSlice = createSlice({
   },
   reducers: {
     updateReservations: (state, action) => {
-      console.log("RESERVATIONS DISPATCH reservations");
       state.books = action.payload;
     },
   },

@@ -7,7 +7,6 @@ export const LoginNameSlice = createSlice({
   },
   reducers: {
     setLoginName: (state, action) => {
-      // console.log('dispatch setSearch');
       state.name = action.payload;
     },
   },

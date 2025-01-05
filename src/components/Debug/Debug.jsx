@@ -9,12 +9,10 @@ import { getSearchKey } from "../../store/searchKeySlice";
 //location
 import { useLocation } from "react-router-dom";
 
-// export default function Debug({ watch, setWatch }) {
-// export default function Debug({ loggedIn }) {
-
 // COMPONENT function
 export default function Debug() {
   //DISPATCH TO STORE..
+  // used during debug mode.
   const login = useSelector(getLogin);
   const searchKey = useSelector(getSearchKey);
   const token = localStorage.getItem("token");
@@ -23,6 +21,8 @@ export default function Debug() {
   return (
     <>
       <div className="container debug-container">
+        {/* KEEP FOR DEBUG, OTHERWISE THIS IS A VANITY BANNER */}
+
         {/* <div className="flex-container">
           <div id="nav-group-1">
             <div className="nav-item">Login: {login.toString()}</div>

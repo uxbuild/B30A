@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function CatalogListViewItem({
   num,
-  id,
-  title,
-  author,
-  available,
+  // id,
+  // title,
+  // author,
+  // available,
   book,
 }) {
   return (
@@ -16,25 +16,20 @@ export default function CatalogListViewItem({
     <tr>
       <td>{num + 1}</td>
       <td>
-        <Link to={`/books/${id}`}>{title}</Link>
+        <Link to={`/books/${book.id}`}>{book.title}</Link>
       </td>
-
-      <td>{author}</td>
-      {/* <td>{available.toString()}</td> */}
-      {available && (
+      <td>{book.author}</td>
+      {book.available && (
         <td className="book-item book-item-available">
           <div>
-            {/* <i className="material-icons">radio_button_checked</i> */}
             <i className="material-icons-outlined">star</i>
           </div>
           <div>&nbsp; Available</div>
         </td>
       )}
-      {!available && (
+      {!book.available && (
         <td className="book-item book-item-checked-out">
-          <div>
-            {/* <i className="material-icons-outlined">adjust</i> */}&nbsp;
-          </div>
+          <div>&nbsp;</div>
           <div>Checked Out</div>
         </td>
       )}
