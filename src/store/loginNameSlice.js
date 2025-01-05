@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const LoginNameSlice = createSlice({
   name: "loginName",
   initialState: {
-    name: "JAMES BOND",
+    name: "GUEST",
   },
   reducers: {
     setLoginName: (state, action) => {
