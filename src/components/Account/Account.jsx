@@ -10,39 +10,49 @@ import Reservations from "../Reservations/Reservations";
 import { Routes, Route } from "react-router-dom";
 import Counter from "../Reservations/Counter";
 import NavTitle from "../Navigation/NavTitle";
+import { useLocation } from "react-router-dom";
 
 export default function Account() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  // console.log("query string", searchParams.get("msg"));
   const msg = searchParams.get("msg");
+
+  // STORE user logged in?
   const login = useSelector(getLogin);
 
   // init request response.
-  const { data: userData, isSuccess } = useGetUserAccountQuery();
+  const {
+    data: userData,
+    isSuccess,
+    error,
+    refetch,
+  } = useGetUserAccountQuery();
+
   const [accountId, setAccountId] = useState(null);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [books, setBooks] = useState([]);
-
-  //local vars / not state.
-  const user = {};
+  // const [books, setBooks] = useState([]);
 
   // check for async response in effect
   useEffect(() => {
+    console.log('ACCOUNT use effect');
+    console.log('ACCOUNT login state', login);
+    
     if (isSuccess) {
+      console.log('ACCOUNT use effect - success account query');
+      
       setAccountId(userData.id);
       setFirstname(userData.firstname);
       setLastname(userData.lastname);
       setEmail(userData.email);
-      setBooks([...userData.books]);
+      // setBooks([...userData.books]);
     }
-    // console.log('user: ', user);
-  }, [userData]);
+  }, [isSuccess, login]);
 
   return (
     <>
+    {/* IF LOGGED IN.. */}
       {login && (
         <div className=" container page-container">
           {msg && <div className="confirmation-message">{msg}</div>}
@@ -66,13 +76,7 @@ export default function Account() {
               </div>
             </div>
             <div id="account-reservations" className="account-info-container">
-              {/* <Reservations /> */}
-
-              {/* <Routes>
-                <Route path="/account" element={<Reservations />} />
-              </Routes> */}
               <Reservations />
-              {/* <Counter /> */}
             </div>
           </div>
         </div>
