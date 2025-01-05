@@ -7,7 +7,8 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import NavSearchField from "../Navigation/NavSearchField";
 import { useDispatch } from "react-redux";
 import { setSearchKey } from "../../store/searchKeySlice";
-// import 
+
+// DISPLAY GRID AND LIST VIEW TOGGLE BUTTON + SEARCH FIELD + CLEAR SEARCH LINK.
 
 export default function CatalogMenu({
   setCatalogViewModeToList,

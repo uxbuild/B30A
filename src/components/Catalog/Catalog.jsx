@@ -1,14 +1,13 @@
-/* TODO - add your code to create a functional React component that displays all of the available books in the library's catalog. Fetch the book data from the provided API. Users should be able to click on an individual book to navigate to the SingleBook component and view its details. */
-import React, { useMemo } from "react";
+//
+// imports..
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import BookListItem from "../BookListItem/BookListItem";
-import CatalogListViewItem from "../BookListItem/CatalogListViewItem";
-import { Table } from "react-bootstrap";
-import { getSearchKey } from "../../store/searchKeySlice";
 import { useLocation } from "react-router-dom";
+import { getSearchKey } from "../../store/searchKeySlice";
+import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 import NavTitle from "../Navigation/NavTitle";
-import CatalogGridViewItem from "../BookListItem/CatalogGridViewItem";
+import CatalogListViewItem from "../CatalogItem/CatalogListViewItem";
+import CatalogGridViewItem from "../CatalogItem/CatalogGridViewItem";
 
 // API and STATE actions
 import { useSelector, useDispatch } from "react-redux";
