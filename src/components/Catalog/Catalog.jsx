@@ -3,23 +3,19 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getSearchKey } from "../../store/searchKeySlice";
-import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import NavTitle from "../Navigation/NavTitle";
 import CatalogListViewItem from "../CatalogItem/CatalogListViewItem";
 import CatalogGridViewItem from "../CatalogItem/CatalogGridViewItem";
 
 // API and STATE actions
-import { useSelector, useDispatch } from "react-redux";
-import { useGetCatalogQuery, updateCatalog } from "./CatalogSlice";
+import { useSelector, } from "react-redux";
+import { useGetCatalogQuery, } from "./CatalogSlice";
 import CatalogMenu from "./CatalogMenu";
 
 // export default function Books() {
 export default function Catalog() {
   const location = useLocation();
-
-  // track and render books..
-  const [books, setBooks] = useState([]);
 
   // search key: STORE state to refresh..
   const keyword = useSelector(getSearchKey);

@@ -15,18 +15,12 @@ import NavTitle from "../Navigation/NavTitle";
 
 export default function BookDetails() {
   const { id } = useParams();
-  const [bookId, setBookId] = useState("");
-  const [bookTitle, setBookTitle] = useState("");
-  const [bookAuthor, setBookAuthor] = useState("");
-  const [bookDescription, setBookDescription] = useState("");
-  const [bookCoverImage, setBookCoverImage] = useState("");
   const [bookAvailable, setBookAvailable] = useState("");
   const login = useSelector(getLogin);
 
   //CHECKOUT book action from BookDetailsSlice.
   const [updateBookStatus] = useUpdateBookStatusMutation();
   // GET book details.
-  const { data, isSuccess } = useGetBookDetailsQuery(id);
   const {
     data: bookDetails,
     error,
@@ -43,21 +37,22 @@ export default function BookDetails() {
     console.log("checkOut clicked");
     try {
       const response = await updateBookStatus({ id, available: false });
-      console.log("reserve book response", response);
       setBookAvailable(response.data.book.available);
+      // NEED TO HANDLE BOOK STATUS UPDATE FAILURE..
     } catch (error) {
       console.log(error);
+      // HANDLE ASYNC ERROR..
     }
   }
 
   async function onCheckIn(e) {
     e.preventDefault();
-    console.log("check-IN clicked");
     try {
       const response = await updateBookStatus({ id, available: true });
-      console.log("reserve book RESPONSE.DATA.BOOK", response.data.book);
       setBookAvailable(response.data.book.available);
+      // NEED ERROR CHECK ON FAILED BOOK STATUS UPDATE..
     } catch (error) {
+      // NEED TO HANDLE ERROR WITH MESSAGE.
       console.error(error);
     }
   }
@@ -79,7 +74,6 @@ export default function BookDetails() {
         <div className="account-info-container">
           <div className="account-info-item">
             <span className="form-label">Title: </span>
-            {/* <span>{bookTitle}</span> */}
             <span>{bookDetails.book.title}</span>
           </div>
           <div className="account-info-item">

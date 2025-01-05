@@ -14,33 +14,31 @@ export default function CatalogMenu({
   setCatalogViewModeToList,
   setCatalogViewModeToGrid,
 }) {
-
-  // to clear search..
+  // TO clear search..
   const dispatch = useDispatch();
-
-  const [view, setView] = useState("list");
-  // function handleAlignment() {}
 
   function onClearSearch(e) {
     e.preventDefault();
-    console.log("CATALOG MENU clear search click");
     dispatch(setSearchKey(""));
   }
 
   return (
     <div className="col-section-catalog-menu">
       <Stack direction="row" spacing={4}>
-        <ToggleButtonGroup
-          value={view}
-          exclusive
-          // onChange={handleAlignment}
-          aria-label="text alignment"
-        >
-          <ToggleButton value="left" aria-label="left aligned">
-            <GridViewOutlinedIcon onClick={setCatalogViewModeToGrid} />
+        <ToggleButtonGroup exclusive aria-label="text alignment">
+          <ToggleButton
+            value="left"
+            aria-label="left aligned"
+            onClick={setCatalogViewModeToGrid}
+          >
+            <GridViewOutlinedIcon />
           </ToggleButton>
-          <ToggleButton value="center" aria-label="centered">
-            <ListOutlinedIcon onClick={setCatalogViewModeToList} />
+          <ToggleButton
+            value="center"
+            aria-label="centered"
+            onClick={setCatalogViewModeToList}
+          >
+            <ListOutlinedIcon />
           </ToggleButton>
         </ToggleButtonGroup>
       </Stack>

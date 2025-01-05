@@ -7,7 +7,7 @@ export const api = createApi({
     baseQuery: fetchBaseQuery({
       baseUrl: API_URL,
     }),
-    // how to handle multiple endpoints??
+    // INQUIRY = how do tags work?
     tagTypes: ["user","books", "book"],
     endpoints: () => ({}),
   });
