@@ -2,6 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { TOKEN_ID } from "../../other/token";
 import { useDispatch } from "react-redux";
 import NavTitle from "../Navigation/NavTitle";
+import { setLoginName } from "../../store/LoginNameSlice";
+
 // action generators
 import {
   getLogin,
@@ -12,13 +14,15 @@ import {
 export default function Logout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-console.log('LOGOUT ..');
+  console.log("LOGOUT ..");
 
   try {
-    dispatch(confirmLogout());
-    localStorage.removeItem(TOKEN_ID);
-    console.log('LOGOUT local storage: ', localStorage);
     
+    localStorage.removeItem(TOKEN_ID);
+    dispatch(confirmLogout());
+    dispatch(setLoginName("GUEST"));
+
+    console.log("LOGOUT local storage: ", localStorage);
 
     // setToken(null);
     return (

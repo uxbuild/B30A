@@ -5,15 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { useGetUserAccountQuery } from "./AccountSlice";
 import { useSearchParams } from "react-router-dom";
 import { getLogin } from "../../store/confirmLoginSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Reservations from "../Reservations/Reservations";
 import { Routes, Route } from "react-router-dom";
 import Counter from "../Reservations/Counter";
 import NavTitle from "../Navigation/NavTitle";
 import { useLocation } from "react-router-dom";
+import { setLoginName } from "../../store/LoginNameSlice";
 
 export default function Account() {
+  
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const msg = searchParams.get("msg");
 
@@ -47,6 +51,7 @@ export default function Account() {
       setLastname(userData.lastname);
       setEmail(userData.email);
       // setBooks([...userData.books]);
+      dispatch(setLoginName(`${userData.firstname} ${userData.lastname}`))
     }
   }, [isSuccess, login]);
 

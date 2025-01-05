@@ -5,7 +5,8 @@ import searchKeyReducer from "./searchKeySlice";
 import counterReducer from "../components/Reservations/CounterSlice";
 import reservationsReducer from "../components/Reservations/reservationsSlice";
 import bookListReducer from "../components/BookList/CatalogSlice";
-import registerReducer from "../components/Register/RegisterSlice"
+import registerReducer from "../components/Register/RegisterSlice";
+import loginNameReducer from "./LoginNameSlice";
 
 import api from "../api/api";
 
@@ -19,6 +20,7 @@ const store = configureStore({
     reservations: reservationsReducer,
     bookList: bookListReducer,
     register: registerReducer,
+    loginName: loginNameReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

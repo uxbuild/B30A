@@ -12,6 +12,8 @@ import NavSearchField from "./NavSearchField";
 import { useLocation } from "react-router-dom";
 import NavTitle from "./NavTitle";
 import NavLinks from "./NavLinks";
+import NavLoginName from "./NavLoginName";
+
 // import { Routes } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { useEffect } from "react";
@@ -57,7 +59,8 @@ export default function NavBar() {
             <Route path="/logout" element={<NavTitle />} />
             <Route path="*" element={<NavTitle />} />
           </Routes> */}
-          <div className="nav-item">Welcome, GUEST</div>
+          {/* <div className="nav-item">Welcome, GUEST</div> */}
+          <NavLoginName />
         </div>
         {isBrowse && (
           <div className="nav-group">
