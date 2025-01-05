@@ -1,7 +1,6 @@
-/* TODO - add your code to create a functional React component that renders a login form */
-// import React from 'react'
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+// imports..
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "./LoginSlice";
 import AlertMessage from "../AlertMessage/AlertMessage";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,26 +12,18 @@ import NavTitle from "../Navigation/NavTitle";
 import {
   getLogin,
   confirmLogin,
-  confirmLogout,
 } from "../../store/confirmLoginSlice";
 
 export default function Login() {
-  // state vars:
+  
   const navigate = useNavigate();
   const isLoggedIn = useSelector(getLogin);
 
   // action: async request to server
   const [loginUser] = useLoginMutation();
-
-  const [submitted, setSubmitted] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState(null);
-  // const [form, setForm] = useState({ email: "", password: "" });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [firstname, setFirstname] = useState("")
-  // const [lastname, setLastname] = useState("")
-  // const [token, setToken] = useState("");
   const dispatch = useDispatch();
 
   const submit = async (e) => {
@@ -49,6 +40,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
+      // NEED TO HANDLE ERROR W APPROPRIATE MESSAGE.
     }
   };
 
