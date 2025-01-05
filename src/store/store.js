@@ -15,7 +15,6 @@ const store = configureStore({
     confirmLogin: confirmLoginReducer,
     login: loginReducer,
     searchKey: searchKeyReducer,
-    // counter: counterReducer,
     reservations: reservationsReducer,
     catalog: catalogReducer,
     register: registerReducer,

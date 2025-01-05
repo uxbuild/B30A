@@ -71,21 +71,21 @@ export default function BookDetails() {
       </div>
       {console.log("BOOK DETAILS data", bookDetails)}
       <div className="flex-container">
-        <div className="account-info-container">
-          <div className="account-info-item">
+        <div className="book-details-info-section">
+          <div className="book-info-item">
             <span className="form-label">Title: </span>
             <span>{bookDetails.book.title}</span>
           </div>
-          <div className="account-info-item">
+          <div className="book-info-item">
             <span className="form-label">Author: </span>
             <span>{bookDetails.book.author}</span>
           </div>
           <p></p>
-          <div className="account-info-item">
+          <div className="book-info-item">
             <span className="form-label">Description: </span>
             <span>{bookDetails.book.description}</span>
           </div>
-          <div className="account-info-item">
+          <div className="book-info-item">
             <p></p>
             <span className="form-label">Status: </span>
             <span>
@@ -93,7 +93,7 @@ export default function BookDetails() {
             </span>
           </div>
           <p></p>
-          <div className="account-info-item">
+          <div className="book-info-item">
             {login && bookDetails.book.available && (
               <Button variant="primary" onClick={onCheckOut}>
                 Reserve
@@ -102,8 +102,8 @@ export default function BookDetails() {
           </div>
         </div>
 
-        <div className="account-info-container">
-          <div className="account-info-item">
+        <div className="book-details-info-section">
+          <div className="book-info-item">
             <img src={bookDetails.book.coverimage} />
           </div>
         </div>

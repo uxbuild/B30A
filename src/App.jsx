@@ -14,12 +14,6 @@ import Lost from "./components/Lost";
 import BookDetails from "./components/BookDetails/BookDetails";
 
 function App() {
-  const [token, setToken] = useState(null);
-
-  const TOKEN_ID = "BOOK_BUDDY_TOKEN_ID";
-  // debug
-  const [watch, setWatch] = useState(0);
-
   return (
     <>
       <Router>
