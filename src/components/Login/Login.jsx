@@ -39,23 +39,15 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      // const response = await registerUser(form).unwrap();
-      //const email = email;
-      //const password = form.password;
-
       const response = await loginUser({ email, password });
       if (response.error) {
         setMessage(response.error.data.message);
       } else {
-        // setToken(localStorage.getItem("token"));
-        // localStorage.setItem("token", response.data.token);
         setMessage(response.data.message);
-        // console.log("token: ", response.data.token);
         dispatch(confirmLogin());
         navigate("/account?msg=You are now signed in.");
       }
     } catch (error) {
-      // console.log('some error', error);
       console.error(error);
     }
   };
@@ -96,116 +88,7 @@ export default function Login() {
           </Form>
         )}
       </div>
-
-      {/* <h2>Login</h2> */}
-      {/* <form onSubmit={submit}>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            className="form-control"
-            aria-describedby="emailHelp"
-            placeholder="bob@bob.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="bob"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form> */}
       {message && <AlertMessage type="error" message={message} />}
     </div>
   );
 }
-
-/*
-import { useState } from "react";
-
-export default function Fetch() {
-  const [username, setUserName] = useState("Damien");
-  const [password, setPassword] = useState("1234567");
-  const [token, setToken] = useState("");
-
-  const authenticate = async () => {
-    try {
-      const response = await fetch(
-        "https://fsa-jwt-practice.herokuapp.com/authenticate",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const submit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://fsa-jwt-practice.herokuapp.com/signup",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-      setToken(data.token);
-      authenticate();
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  return (
-    <div>
-      <form onSubmit={submit}>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            className="form-control"
-            aria-describedby="emailHelp"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
-  );
-} 
- */

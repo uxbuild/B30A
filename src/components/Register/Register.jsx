@@ -1,17 +1,18 @@
 import { useState } from "react";
-// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "./RegisterSlice";
-// import ErrorMessage from "../ErrorMessage/ErrorMessage";
-// import Message from "../AlertMessage/AlertMessage";
 import AlertMessage from "../AlertMessage/AlertMessage";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavTitle from "../Navigation/NavTitle";
+import { useDispatch, useSelector } from "react-redux";
+import { confirmLogin, confirmLogout, getLogin } from "../../store/confirmLoginSlice";
+
 
 export default function Register() {
-  //navigate hook
+  // navigate
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //state user data.
   const [form, setForm] = useState({
@@ -20,6 +21,7 @@ export default function Register() {
     email: "",
     password: "",
   });
+
   // action generator from register slice
   const [registerUser] = useRegisterMutation();
 
@@ -28,13 +30,14 @@ export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
+  const login = useSelector(getLogin);
+
   const change = (e) => {
     e.preventDefault();
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    // console.log("change", `${e.target.name} : ${e.target.value}`);
   };
 
   //on form submit..
@@ -43,7 +46,7 @@ export default function Register() {
     setIsError(false);
     setIsSuccess(false);
     setMessage(null);
-    console.log("submit form", form);
+    // console.log("submit form", form);
 
     try {
       const email = form.email;
@@ -58,7 +61,8 @@ export default function Register() {
         password,
       });
 
-      console.log("register user response", response);
+      // console.log("register user response", response);
+
       if (response.error) {
         setIsSuccess(false);
         setIsError(true);
@@ -67,16 +71,19 @@ export default function Register() {
       } else {
         setIsSuccess(true);
         setIsError(false);
+        
+        // set login state.
+        dispatch(confirmLogin());
+        console.log('REGISTER login state: ', login);
+        
         setMessage("Registration successful.");
-        // localStorage.setItem("token", data.token);
-        // console.log("success message: ", message);
-        // navigate("/login");
+
         navigate(
           "/account?msg=Registration successful. Welcome to Book Buddy!"
         );
       }
     } catch (error) {
-      // console.log('some error', error);
+      console.log('some error', error);
       console.error(error.data.message);
       setMessage(error.data.message);
       setIsError(true);

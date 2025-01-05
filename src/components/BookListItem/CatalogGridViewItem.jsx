@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function CatalogGridViewItem({
   num,
@@ -20,14 +21,23 @@ export default function CatalogGridViewItem({
   book,
   image,
 }) {
-
   const navigate = useNavigate();
 
-  function onGridItemClick(e){
+  function onGridItemClick(e) {
     e.preventDefault();
-    console.log('GRID ITEM click');
-    navigate(`/books/${book.id}`);  
+    console.log("GRID ITEM click");
+    navigate(`/books/${book.id}`);
   }
+
+  const [imgSrc, setImgSrc] = useState(image);
+  // Placeholder image URL
+  const placeholderImage = "https://via.placeholder.com/150";
+
+  // Handle error in loading image and set the placeholder
+  const handleImageError = () => {
+    setImgSrc(placeholderImage);
+  };
+
   return (
     // <p>{num+1}. {title}</p>
     <div className="grid-view-item-container">
@@ -37,9 +47,11 @@ export default function CatalogGridViewItem({
           component="img"
           alt="Example Image"
           // height="140" // Adjust the height of the image
-          
+
           width="100%"
-          image={image} // Replace with your image URL
+          // image={image} // Replace with your image URL
+          image={imgSrc}
+          onError={handleImageError} // Trigger on error (failed to load)
         />
         <CardContent>
           <Typography variant="body1">{title}</Typography>
@@ -48,8 +60,30 @@ export default function CatalogGridViewItem({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={onGridItemClick}>Learn More</Button>
+          <Button size="small" onClick={onGridItemClick}>
+            Click for details
+          </Button>
         </CardActions>
+        {/* Color Bar */}
+        {available ? (
+          <CardActions
+            sx={{ p: 0, display: "flex" }}
+            className="card-label-container-available"
+          >
+            <Typography variant="body2" className="card-availability-label">
+              Available
+            </Typography>
+          </CardActions>
+        ) : (
+          <CardActions
+            sx={{ p: 0, display: "flex" }}
+            className="card-label-container-reserved"
+          >
+            <Typography variant="body2" className="card-availability-label">
+              Checked Out
+            </Typography>
+          </CardActions>
+        )}
       </Card>
     </div>
   );

@@ -12,11 +12,13 @@ import {
 export default function Logout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //should save token id.
-  // should check if token id exists.
+console.log('LOGOUT ..');
+
   try {
     dispatch(confirmLogout());
     localStorage.removeItem(TOKEN_ID);
+    console.log('LOGOUT local storage: ', localStorage);
+    
 
     // setToken(null);
     return (

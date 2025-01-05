@@ -12,12 +12,12 @@ export const confirmLoginSlice = createSlice({
     initialState,
     reducers: {
         confirmLogin: (state)=>{
-            console.log('dispatch confirmLogin');          
+            console.log('dispatch confirmLogin IN');          
             state.value = true;
         },
         confirmLogout: (state)=>{
+            console.log('dispatch confirmLogout OUT');
             state.value = false;
-            console.log('dispatch confirmLogout');
         },
     }
 })
