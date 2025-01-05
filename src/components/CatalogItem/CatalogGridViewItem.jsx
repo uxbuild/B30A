@@ -14,12 +14,12 @@ import { useState } from "react";
 
 export default function CatalogGridViewItem({
   num,
-  id,
-  title,
-  author,
-  available,
+  // id,
+  // title,
+  // author,
+  // available,
   book,
-  image,
+  // image,
 }) {
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ export default function CatalogGridViewItem({
     navigate(`/books/${book.id}`);
   }
 
-  const [imgSrc, setImgSrc] = useState(image);
+  const [imgSrc, setImgSrc] = useState(book.coverimage);
   // Placeholder image URL
   const placeholderImage = "https://via.placeholder.com/150";
 
@@ -54,9 +54,9 @@ export default function CatalogGridViewItem({
           onError={handleImageError} // Trigger on error (failed to load)
         />
         <CardContent>
-          <Typography variant="body1">{title}</Typography>
+          <Typography variant="body1">{book.title}</Typography>
           <Typography variant="body2" color="text.secondary">
-            {author}
+            {book.author}
           </Typography>
         </CardContent>
         <CardActions>
@@ -65,7 +65,7 @@ export default function CatalogGridViewItem({
           </Button>
         </CardActions>
         {/* Color Bar */}
-        {available ? (
+        {book.available ? (
           <CardActions
             sx={{ p: 0, display: "flex" }}
             className="card-label-container-available"

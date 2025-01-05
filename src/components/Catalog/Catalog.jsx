@@ -9,8 +9,8 @@ import CatalogListViewItem from "../CatalogItem/CatalogListViewItem";
 import CatalogGridViewItem from "../CatalogItem/CatalogGridViewItem";
 
 // API and STATE actions
-import { useSelector, } from "react-redux";
-import { useGetCatalogQuery, } from "./CatalogSlice";
+import { useSelector } from "react-redux";
+import { useGetCatalogQuery } from "./CatalogSlice";
 import CatalogMenu from "./CatalogMenu";
 
 // export default function Books() {
@@ -32,11 +32,9 @@ export default function Catalog() {
   };
 
   function setCatalogViewModeToList() {
-    // console.log("CATALOG MENU view mode to LIST");
     switchViewMode("list");
   }
   function setCatalogViewModeToGrid() {
-    // console.log("CATALOG MENU view mode to GRID");
     switchViewMode("grid");
   }
 
@@ -111,14 +109,9 @@ export default function Catalog() {
                 <tbody>
                   {filteredCatalog.map((item, index) => {
                     return (
-                      // <BookListItem
                       <CatalogListViewItem
                         key={index}
                         num={index}
-                        id={item.id}
-                        title={item.title}
-                        author={item.author}
-                        available={item.available}
                         book={item}
                       />
                     );
