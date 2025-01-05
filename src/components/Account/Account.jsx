@@ -8,7 +8,6 @@ import { getLogin } from "../../store/confirmLoginSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Reservations from "../Reservations/Reservations";
 import { Routes, Route } from "react-router-dom";
-import Counter from "../Reservations/Counter";
 import NavTitle from "../Navigation/NavTitle";
 import { useLocation } from "react-router-dom";
 import { setLoginName } from "../../store/LoginNameSlice";
