@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+import { Button } from "react-bootstrap";
 
 export default function ReservationItem({
   index,
@@ -14,7 +14,7 @@ export default function ReservationItem({
       <td>{id}</td>
       <td>{title}</td>
       <td>
-        <Button variant="contained" onClick={onHandleClick}>
+        <Button variant="primary" onClick={onHandleClick}>
           Return Item
         </Button>
       </td>

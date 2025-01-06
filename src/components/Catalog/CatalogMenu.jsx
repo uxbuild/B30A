@@ -1,9 +1,4 @@
 import { useState } from "react";
-import Stack from "@mui/material/Stack";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import NavSearchField from "../Navigation/NavSearchField";
 import { useDispatch } from "react-redux";
 import { setSearchKey } from "../../store/searchKeySlice";
@@ -17,6 +12,22 @@ export default function CatalogMenu({
   // TO clear search..
   const dispatch = useDispatch();
 
+  //track active view mode button.
+  const [activeButton, setActiveButton] = useState(null);
+
+  function onClickViewMode(e, doViewMode) {
+    if (activeButton === e.target) {
+      // setActiveButton(null);
+      // e.target.classList.remove("active");
+    } else {
+      // const btnId = e.target.id;
+      activeButton && activeButton.classList.remove("active");
+      setActiveButton(e.target);
+      e.target.classList.add("active");
+    }
+    doViewMode();
+  }
+
   function onClearSearch(e) {
     e.preventDefault();
     dispatch(setSearchKey(""));
@@ -24,7 +35,7 @@ export default function CatalogMenu({
 
   return (
     <div className="col-section-catalog-menu">
-      <Stack direction="row" spacing={4}>
+      {/* <Stack direction="row" spacing={4}>
         <ToggleButtonGroup exclusive aria-label="text alignment">
           <ToggleButton
             value="left"
@@ -41,7 +52,36 @@ export default function CatalogMenu({
             <ListOutlinedIcon />
           </ToggleButton>
         </ToggleButtonGroup>
-      </Stack>
+      </Stack> */}
+      <div>
+        <div
+          className="btn-group"
+          role="group"
+          aria-label="Basic outlined example"
+        >
+          <button
+            id="btn-view-grid"
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={(e) => {
+              onClickViewMode(e, setCatalogViewModeToGrid);
+            }}
+          >
+            Grid
+          </button>
+          <button
+            id="btn-view-list"
+            type="button"
+            className="btn btn-outline-primary"
+            // onClick={setCatalogViewModeToList}
+            onClick={(e) => {
+              onClickViewMode(e, setCatalogViewModeToList);
+            }}
+          >
+            List
+          </button>
+        </div>
+      </div>
       <div className="ui-search">
         <NavSearchField />
       </div>

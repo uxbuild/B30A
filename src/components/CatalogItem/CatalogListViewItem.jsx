@@ -3,16 +3,8 @@ import ReactDOM from "react-dom/client";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function CatalogListViewItem({
-  num,
-  // id,
-  // title,
-  // author,
-  // available,
-  book,
-}) {
+export default function CatalogListViewItem({ num, book }) {
   return (
-    // <p>{num+1}. {title}</p>
     <tr>
       <td>{num + 1}</td>
       <td>
