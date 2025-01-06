@@ -14,7 +14,7 @@ export default function ReservationItem({
       <td>{id}</td>
       <td>{title}</td>
       <td>
-        <Button variant="contained" onClick={onHandleClick}>
+        <Button variant="primary" onClick={onHandleClick}>
           Return Item
         </Button>
       </td>
