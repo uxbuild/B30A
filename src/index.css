@@ -14,7 +14,7 @@ body {
   display: inline-block;
   color: red;
   background-color: yellow;
-  padding: .5em;
+  padding: 0.5em;
   margin: 1em;
 }
 
@@ -22,7 +22,7 @@ body {
   display: inline-block;
   color: blue;
   font-weight: bold;
-  padding: .5em;
+  padding: 0.5em;
   margin: 1em;
 }
 
@@ -30,12 +30,12 @@ body {
   display: inline-block;
   color: blue;
   font-weight: bold;
-  padding: .5em;
+  padding: 0.5em;
   margin: 1em;
 }
 
 .flex-container {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -55,21 +55,19 @@ body {
 .nav-item-active {
   display: inline-block;
   padding: 1em;
-  color: grey
+  color: grey;
 }
 
 .nav-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: .5em;
+  padding: 0.5em;
 }
 
-
-
 .nav-item a {
-  display:inline;
-  margin:.5em;
+  display: inline;
+  margin: 0.5em;
 }
 
 .nav-item-pending {
@@ -82,25 +80,23 @@ body {
 .debug-message {
   background-color: yellow;
   display: inline-block;
-  padding:.5em;
+  padding: 0.5em;
 }
 
 .debug-container {
   background-color: lightsalmon;
-  background-image: url('assets/banner-2.png');
+  background-image: url("assets/banner-2.png");
   background-repeat: repeat-y;
   background-repeat: repeat-x;
   height: 100px;
   padding: 1em;
-  color:black;
+  color: black;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .page-container {
   padding: 0 !important;
 }
-
-
 
 .web-form {
   width: 50%;
@@ -111,16 +107,16 @@ body {
   background-color: aliceblue;
   margin: 1em;
   padding: 1em;
-  flex:50%;
-  display:flex;
+  flex: 50%;
+  display: flex;
   flex-direction: column;
 }
 .book-details-info-section {
   background-color: aliceblue;
   margin: 1em;
   padding: 1em;
-  flex:50%;
-  display:flex;
+  flex: 50%;
+  display: flex;
   flex-direction: column;
 }
 
@@ -133,33 +129,33 @@ body {
   background-color: slateblue;
   margin: 0;
   width: 100%;
-  padding: .5em;
+  padding: 0.5em;
   color: white;
 }
 .col-section {
   background-color: aliceblue;
   margin-top: 1em;
   padding: 1em;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 .col-section-catalog-menu {
   background-color: aliceblue;
   padding: 0 0 1em !important;
   margin: 0;
-  width:100%;
+  width: 100%;
   padding: 1em;
-  display:flex;
+  display: flex;
   flex-direction: row;
 }
 
 .row-section {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .page-section {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -167,17 +163,14 @@ body {
   background-color: aliceblue;
   margin: 1em;
   padding: 1em;
-  flex:50%;
-  display:flex;
+  flex: 50%;
+  display: flex;
   flex-direction: column;
 }
 
 .form-label {
   font-weight: bold;
 }
-
-
-
 
 .book-cover-lg {
   max-width: 250;
@@ -228,19 +221,18 @@ body {
 }
 
 .grid-view-container {
-  display:flex !important;
+  display: flex !important;
   flex-wrap: wrap;
   gap: 16px !important;
   /* flex-direction: row; */
   /* {{ display: 'flex', flexWrap: 'wrap', gap: '16px' }} */
-  
 }
 .grid-view-item-container {
-  margin: .5em !important;
+  margin: 0.5em !important;
 }
 
 .empty-list-msg {
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .card-label-container-available {
@@ -251,7 +243,6 @@ body {
   align-items: center;
   background-color: darkblue;
   color: white;
-
 }
 .card-label-container-reserved {
   display: flex;
@@ -260,12 +251,60 @@ body {
   /* vertical */
   align-items: center;
   background-color: lightgray;
-  color:gray;
-
+  color: gray;
 }
 .card-availability-label {
   padding: 1em;
   line-height: normal;
   font-weight: bolder !important;
-
 }
+
+.grid-view-card {
+  margin: 1em;
+  /* padding: 1em; */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  max-width: 200px;
+}
+.grid-view-card-item {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  background-color: white;
+}
+
+.grid-view-card-item:last-child {
+  /* align-self: flex-end; Align the last item to the bottom */
+  margin-top:auto;
+}
+
+.grid-view-card-image {
+  max-width: 100%;
+  height: auto;
+}
+.grid-view-card-title {
+  padding: 0.5em;
+  /* background-color: orange; */
+  word-wrap: break-word;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight:600;
+}
+.grid-view-card-author {
+  padding: 0.5em;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  /* font-weight:500; */
+  font-style: italic;
+
+  /* background-color: cornflowerblue; */
+}
+.grid-view-card-link {
+  padding: 0.5em;
+  cursor: pointer; 
+  /* background-color: white; */
+}
+
