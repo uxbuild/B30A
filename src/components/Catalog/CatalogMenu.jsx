@@ -1,13 +1,7 @@
 import { useState } from "react";
-import Stack from "@mui/material/Stack";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import NavSearchField from "../Navigation/NavSearchField";
 import { useDispatch } from "react-redux";
 import { setSearchKey } from "../../store/searchKeySlice";
-import { Button } from "react-bootstrap";
 
 // DISPLAY GRID AND LIST VIEW TOGGLE BUTTON + SEARCH FIELD + CLEAR SEARCH LINK.
 
@@ -30,7 +24,6 @@ export default function CatalogMenu({
       activeButton && activeButton.classList.remove("active");
       setActiveButton(e.target);
       e.target.classList.add("active");
-      
     }
     doViewMode();
   }
@@ -70,7 +63,9 @@ export default function CatalogMenu({
             id="btn-view-grid"
             type="button"
             className="btn btn-outline-primary"
-            onClick={(e)=>{onClickViewMode(e,setCatalogViewModeToGrid);}}
+            onClick={(e) => {
+              onClickViewMode(e, setCatalogViewModeToGrid);
+            }}
           >
             Grid
           </button>
@@ -79,7 +74,9 @@ export default function CatalogMenu({
             type="button"
             className="btn btn-outline-primary"
             // onClick={setCatalogViewModeToList}
-            onClick={(e)=>{onClickViewMode(e,setCatalogViewModeToList);}}
+            onClick={(e) => {
+              onClickViewMode(e, setCatalogViewModeToList);
+            }}
           >
             List
           </button>
