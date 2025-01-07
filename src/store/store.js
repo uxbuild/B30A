@@ -5,7 +5,7 @@ import reservationsReducer from "../components/Reservations/reservationsSlice";
 import catalogReducer from "../components/Catalog/CatalogSlice";
 import registerReducer from "../components/Register/RegisterSlice";
 import loginNameReducer from "./LoginNameSlice";
-import confirmLoginReducer from "./confirmLoginSlice";
+import confirmLoginReducer from "./temp";
 
 import api from "../api/api";
 
