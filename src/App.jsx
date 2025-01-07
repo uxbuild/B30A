@@ -8,7 +8,7 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Account from "./components/Account/Account";
 import Catalog from "./components/Catalog/Catalog";
-import NavBar from "./components/Navigation/NavBar-temp";
+import NavBar from "./components/Navigation/NavBar";
 import Debug from "./components/Debug/Debug";
 import Lost from "./components/Lost";
 import BookDetails from "./components/BookDetails/BookDetails";
