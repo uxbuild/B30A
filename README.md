@@ -1,5 +1,10 @@
 # B30A: BOOK BUDDY
 
+APP deployed on AWS:
+https://main.d18pt9dqit58sa.amplifyapp.com/
+
+
+
 API Reference:
 https://fsa-book-buddy-b6e748d1380d.herokuapp.com/docs/
 
