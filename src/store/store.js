@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import confirmLoginReducer from "./confirmLoginSlice";
 import loginReducer from "../components/Login/LoginSlice";
 import searchKeyReducer from "./searchKeySlice";
 import reservationsReducer from "../components/Reservations/reservationsSlice";
 import catalogReducer from "../components/Catalog/CatalogSlice";
 import registerReducer from "../components/Register/RegisterSlice";
 import loginNameReducer from "./LoginNameSlice";
+import confirmLoginReducer from "./confirmLoginSlice";
 
 import api from "../api/api";
 
